@@ -77,6 +77,9 @@ super-son1k/
 - Historial de generaciones
 - Exportación a Sanctuary/Nova
 - Sugerencias IA (Qwen)
+- **Mini DAW integrado** para grabación de maquetas
+- **Procesamiento IA** de grabaciones en tiempo real
+- **Flujo Maqueta → IA** para procesamiento automático
 
 ### 4. Sonic DAW - DAW Profesional
 **Puerto**: 3005  

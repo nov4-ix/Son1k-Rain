@@ -6,6 +6,8 @@ import { VoiceCloner } from '../components/VoiceCloner';
 import { TextToSpeech } from '../components/TextToSpeech';
 import { GenerationHistory } from '../components/GenerationHistory';
 import { AISuggestions } from '../components/AISuggestions';
+import { MiniDAW } from '../components/MiniDAW';
+import '../components/MiniDAW.css';
 
 export const GhostStudio: React.FC = () => {
   const { activeTab, setActiveTab } = useGhostStore();
@@ -13,7 +15,8 @@ export const GhostStudio: React.FC = () => {
   const tabs = [
     { id: 'music', label: 'Generar Música', icon: '🎵' },
     { id: 'voice', label: 'Clonar Voz', icon: '🎭' },
-    { id: 'tts', label: 'Texto a Voz', icon: '🔊' }
+    { id: 'tts', label: 'Texto a Voz', icon: '🔊' },
+    { id: 'daw', label: 'Mini DAW', icon: '🎛️' }
   ];
 
   const renderActiveTab = () => {
@@ -24,6 +27,17 @@ export const GhostStudio: React.FC = () => {
         return <VoiceCloner />;
       case 'tts':
         return <TextToSpeech />;
+      case 'daw':
+        return <MiniDAW 
+          onTrackRecorded={(track) => {
+            console.log('Track recorded:', track);
+            // Here you could integrate with the AI processing
+          }}
+          onTrackProcessed={(trackId, processedAudio) => {
+            console.log('Track processed:', trackId, processedAudio);
+            // Here you could update the track with AI processed audio
+          }}
+        />;
       default:
         return <MusicGenerator />;
     }
