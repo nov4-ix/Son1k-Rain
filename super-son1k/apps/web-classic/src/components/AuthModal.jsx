@@ -294,7 +294,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }) => {
                 <strong>🏢 Enterprise:</strong> pro.enterprise@son1kvers3.com
               </div>
               <div className="test-account">
-                <strong>⭐ Premium:</strong> pro.tester1@sonikvers3.com
+                <strong>⭐ Pro:</strong> pro.tester1@sonikvers3.com
               </div>
             </div>
             <p className="test-password">Contraseña: Premium!123</p>

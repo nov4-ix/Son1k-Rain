@@ -209,12 +209,12 @@ class AuthService {
       }
     });
 
-    // 10 Testers Premium
+    // 10 Testers Pro
     for (let i = 1; i <= 10; i++) {
       this.createUser({
         email: `pro.tester${i}@sonikvers3.com`,
         password: 'Premium!123',
-        role: 'premium',
+        role: 'pro',
         nickname: `Tester${i}`,
         isFounder: true,
         isActive: true,
