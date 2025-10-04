@@ -28,6 +28,37 @@ const ConfigPanel = () => {
     }
   };
 
+  const applyDemoMode = (mode) => {
+    switch(mode) {
+      case 'matrix':
+        updateConfig('colors', 'cyan', '#00FF00');
+        updateConfig('colors', 'magenta', '#FF0000');
+        updateConfig('ring', 'size', 250);
+        updateConfig('glitchLines', 'opacity', 0.3);
+        break;
+      case 'cyberpunk':
+        updateConfig('colors', 'cyan', '#FF00FF');
+        updateConfig('colors', 'magenta', '#00FFFF');
+        updateConfig('ring', 'size', 350);
+        updateConfig('glitchLines', 'opacity', 0.15);
+        break;
+      case 'minimal':
+        updateConfig('colors', 'cyan', '#FFFFFF');
+        updateConfig('colors', 'magenta', '#CCCCCC');
+        updateConfig('ring', 'size', 200);
+        updateConfig('glitchLines', 'opacity', 0.1);
+        break;
+      case 'neon':
+        updateConfig('colors', 'cyan', '#00FFE7');
+        updateConfig('colors', 'magenta', '#FF00E7');
+        updateConfig('ring', 'size', 300);
+        updateConfig('glitchLines', 'opacity', 0.25);
+        break;
+      default:
+        resetConfig();
+    }
+  };
+
   return (
     <>
       <button 
@@ -161,6 +192,44 @@ const ConfigPanel = () => {
                   onChange={(e) => handleConfigChange('animations', 'glitchFlashInterval', parseInt(e.target.value))}
                 />
                 <span>{config.animations.glitchFlashInterval}ms</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Modos de demostración */}
+          <div className="config-section">
+            <h4>Modos Demo</h4>
+            <div className="demo-modes">
+              <button onClick={() => applyDemoMode('matrix')} className="demo-btn matrix">
+                Matrix
+              </button>
+              <button onClick={() => applyDemoMode('cyberpunk')} className="demo-btn cyberpunk">
+                Cyberpunk
+              </button>
+              <button onClick={() => applyDemoMode('minimal')} className="demo-btn minimal">
+                Minimal
+              </button>
+              <button onClick={() => applyDemoMode('neon')} className="demo-btn neon">
+                Neon
+              </button>
+            </div>
+          </div>
+
+          {/* Atajos de teclado */}
+          <div className="config-section">
+            <h4>Atajos de Teclado</h4>
+            <div className="shortcuts">
+              <div className="shortcut-item">
+                <span className="shortcut-key">Ctrl/Cmd + A</span>
+                <span className="shortcut-desc">Modo alterno</span>
+              </div>
+              <div className="shortcut-item">
+                <span className="shortcut-key">Espacio</span>
+                <span className="shortcut-desc">Flash manual</span>
+              </div>
+              <div className="shortcut-item">
+                <span className="shortcut-key">Escape</span>
+                <span className="shortcut-desc">Resetear modo</span>
               </div>
             </div>
           </div>

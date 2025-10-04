@@ -17,9 +17,11 @@ const NexusScene = () => {
     { id: 6, symbol: '🛡️', label: 'Protección' }
   ];
 
-  // Sonido de activación
+  // Sistema de audio mejorado
   const playActivationSound = () => {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // Sonido principal de activación
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
     
@@ -34,6 +36,44 @@ const NexusScene = () => {
     
     oscillator.start(audioContext.currentTime);
     oscillator.stop(audioContext.currentTime + config.audio.activationDuration / 1000);
+    
+    // Sonido secundario de glitch
+    setTimeout(() => {
+      const glitchOsc = audioContext.createOscillator();
+      const glitchGain = audioContext.createGain();
+      
+      glitchOsc.connect(glitchGain);
+      glitchGain.connect(audioContext.destination);
+      
+      glitchOsc.frequency.setValueAtTime(150, audioContext.currentTime);
+      glitchOsc.frequency.setValueAtTime(200, audioContext.currentTime + 0.1);
+      glitchOsc.frequency.setValueAtTime(100, audioContext.currentTime + 0.2);
+      
+      glitchGain.gain.setValueAtTime(0.05, audioContext.currentTime);
+      glitchGain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+      
+      glitchOsc.start(audioContext.currentTime);
+      glitchOsc.stop(audioContext.currentTime + 0.3);
+    }, 200);
+  };
+
+  // Sonido de hover en íconos
+  const playHoverSound = () => {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.1);
+    
+    gainNode.gain.setValueAtTime(0.02, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.1);
   };
 
   // Micro-texto tras tiempo configurado
@@ -56,6 +96,32 @@ const NexusScene = () => {
     return () => clearInterval(interval);
   }, [config]);
 
+  // Atajos de teclado
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      // Ctrl/Cmd + A para modo alterno
+      if ((event.ctrlKey || event.metaKey) && event.key === 'a') {
+        event.preventDefault();
+        toggleAlternateMode();
+      }
+      
+      // Espacio para flash manual
+      if (event.key === ' ') {
+        event.preventDefault();
+        setGlitchFlash(true);
+        setTimeout(() => setGlitchFlash(false), 100);
+      }
+      
+      // Escape para resetear modo alterno
+      if (event.key === 'Escape') {
+        setAlternateMode(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
   const toggleAlternateMode = () => {
     setAlternateMode(!alternateMode);
     playActivationSound();
@@ -72,7 +138,10 @@ const NexusScene = () => {
               <div
                 key={icon.id}
                 className="nexus-icon"
-                onMouseEnter={() => setHoveredIcon(icon.id)}
+                onMouseEnter={() => {
+                  setHoveredIcon(icon.id);
+                  playHoverSound();
+                }}
                 onMouseLeave={() => setHoveredIcon(null)}
                 title={icon.label}
                 style={{

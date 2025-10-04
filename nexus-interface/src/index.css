@@ -676,6 +676,104 @@ body {
   transform: scale(1.05);
 }
 
+/* Modos de demostración */
+.demo-modes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.demo-btn {
+  padding: 8px 12px;
+  border: 1px solid var(--cyan);
+  background: rgba(0, 255, 231, 0.1);
+  color: var(--cyan);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'CoinDingDong', monospace;
+  font-size: 11px;
+  transition: all 0.3s ease;
+}
+
+.demo-btn:hover {
+  background: rgba(0, 255, 231, 0.3);
+  transform: scale(1.05);
+}
+
+.demo-btn.matrix {
+  border-color: #00FF00;
+  color: #00FF00;
+  background: rgba(0, 255, 0, 0.1);
+}
+
+.demo-btn.matrix:hover {
+  background: rgba(0, 255, 0, 0.3);
+}
+
+.demo-btn.cyberpunk {
+  border-color: #FF00FF;
+  color: #FF00FF;
+  background: rgba(255, 0, 255, 0.1);
+}
+
+.demo-btn.cyberpunk:hover {
+  background: rgba(255, 0, 255, 0.3);
+}
+
+.demo-btn.minimal {
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.demo-btn.minimal:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.demo-btn.neon {
+  border-color: #FF00E7;
+  color: #FF00E7;
+  background: rgba(255, 0, 231, 0.1);
+}
+
+.demo-btn.neon:hover {
+  background: rgba(255, 0, 231, 0.3);
+}
+
+/* Atajos de teclado */
+.shortcuts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.shortcut-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.shortcut-key {
+  background: rgba(0, 255, 231, 0.1);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'CoinDingDong', monospace;
+  font-size: 10px;
+  min-width: 60px;
+  text-align: center;
+}
+
+.shortcut-desc {
+  color: var(--dim);
+  font-size: 11px;
+  margin-left: 10px;
+}
+
 /* Optimizaciones de rendimiento */
 .nexus-center,
 .ring,

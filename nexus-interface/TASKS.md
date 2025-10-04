@@ -69,6 +69,8 @@
 - **Íconos**: Tamaño y fuente (20-60px)
 - **Barras Glitch**: Opacidad (0.1-0.5)
 - **Animaciones**: Delays y intervalos configurables
+- **Modos Demo**: Matrix, Cyberpunk, Minimal, Neon (predefinidos)
+- **Atajos de Teclado**: Ctrl+A, Espacio, Escape
 
 ### Configuración JSON (nexus-config.json)
 ```json
@@ -135,6 +137,15 @@
 - [x] **Panel configuración**: Ajustes en tiempo real
 - [x] **Configuración JSON**: Todos los efectos configurables
 - [x] **Optimizaciones GPU**: will-change, transform3D
+
+### ✅ Funcionalidades Premium (Nuevas)
+- [x] **Sistema de audio mejorado**: Sonidos de activación + glitch + hover
+- [x] **Más easter eggs**: 20 mensajes Matrix ocultos (vs 10 originales)
+- [x] **Atajos de teclado**: Ctrl+A (modo alterno), Espacio (flash), Escape (reset)
+- [x] **Modos demo predefinidos**: Matrix, Cyberpunk, Minimal, Neon
+- [x] **Panel configuración avanzado**: Modos demo + atajos de teclado
+- [x] **Sonidos de hover**: Audio sutil al pasar mouse sobre íconos
+- [x] **Efectos de sonido múltiples**: Activación + glitch secundario
 
 ## 🚀 Comandos de Desarrollo
 
