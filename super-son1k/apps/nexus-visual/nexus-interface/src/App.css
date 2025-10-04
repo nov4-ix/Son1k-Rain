@@ -1,0 +1,7 @@
+/* App.css - Estilos específicos de la aplicación */
+.App {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}

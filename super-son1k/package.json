@@ -1,0 +1,58 @@
+{
+  "name": "super-son1k",
+  "version": "1.0.0",
+  "description": "Monorepo Super-Son1k con integración Qwen AI",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "backend",
+    "services"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:web-classic\" \"npm run dev:nexus-visual\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:web-classic": "cd apps/web-classic && npm run dev",
+    "dev:nexus-visual": "cd apps/nexus-visual && npm run dev",
+    "build": "npm run build:backend && npm run build:web-classic && npm run build:nexus-visual",
+    "build:backend": "cd backend && npm run build",
+    "build:web-classic": "cd apps/web-classic && npm run build",
+    "build:nexus-visual": "cd apps/nexus-visual && npm run build",
+    "start": "npm run start:backend",
+    "start:backend": "cd backend && npm start",
+    "test": "npm run test:backend && npm run test:web-classic && npm run test:nexus-visual",
+    "test:backend": "cd backend && npm test",
+    "test:web-classic": "cd apps/web-classic && npm test",
+    "test:nexus-visual": "cd apps/nexus-visual && npm test",
+    "lint": "npm run lint:backend && npm run lint:web-classic && npm run lint:nexus-visual",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:web-classic": "cd apps/web-classic && npm run lint",
+    "lint:nexus-visual": "cd apps/nexus-visual && npm run lint",
+    "install:all": "npm install && npm run install:backend && npm run install:web-classic && npm run install:nexus-visual",
+    "install:backend": "cd backend && npm install",
+    "install:web-classic": "cd apps/web-classic && npm install",
+    "install:nexus-visual": "cd apps/nexus-visual && npm install",
+    "clean": "rm -rf node_modules apps/*/node_modules backend/node_modules packages/*/node_modules",
+    "qwen:health": "curl http://localhost:3001/api/qwen/health",
+    "qwen:status": "curl http://localhost:3001/api/qwen/status"
+  },
+  "keywords": [
+    "super-son1k",
+    "qwen",
+    "ai",
+    "pixel",
+    "nova",
+    "clone-station",
+    "ghost-studio",
+    "monorepo"
+  ],
+  "author": "Super-Son1k Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
