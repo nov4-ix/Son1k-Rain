@@ -14,6 +14,7 @@ require('dotenv').config();
 const qwenRoutes = require('./routes/qwenRoutes');
 const sunoRoutes = require('./routes/sunoRoutes');
 const metricsRoutes = require('./routes/metricsRoutes');
+const trackRoutes = require('./routes/trackRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -63,6 +64,7 @@ app.get('/health', (req, res) => {
 app.use('/api/qwen', qwenRoutes);
 app.use('/api/suno', sunoRoutes);
 app.use('/api', metricsRoutes);
+app.use('/api', trackRoutes);
 
 // Ruta raíz
 app.get('/', (req, res) => {
@@ -74,12 +76,14 @@ app.get('/', (req, res) => {
       qwen: '/api/qwen',
       suno: '/api/suno',
       metrics: '/api/metrics',
+      tracks: '/api/tracks',
       pixel: '/api/qwen/pixel/qwen-analyze',
       nova: '/api/qwen/nova/qwen-copy',
       clone: '/api/qwen/clone/qwen-clean',
       ghost: '/api/qwen/ghost/qwen-analyze',
       generator: '/api/suno/generator/generate-music',
-      dashboard: '/api/metrics/dashboard'
+      dashboard: '/api/metrics/dashboard',
+      topTracks: '/api/tracks/top'
     },
     documentation: '/docs'
   });
@@ -127,6 +131,10 @@ app.listen(PORT, () => {
     console.log(`   GET  /api/metrics/dashboard`);
     console.log(`   GET  /api/metrics/trends`);
     console.log(`   GET  /api/metrics/alerts`);
+    console.log(`   GET  /api/tracks/top`);
+    console.log(`   POST /api/tracks/generate`);
+    console.log(`   POST /api/tracks/:id/play`);
+    console.log(`   POST /api/tracks/:id/like`);
   }
 });
 

@@ -221,6 +221,34 @@ const TheGenerator = () => {
         duration: data.data.duration
       });
 
+      // Registrar track generado en analytics
+      try {
+        await fetch(`${API_BASE}/tracks/generate`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('authToken') || ''}`
+          },
+          body: JSON.stringify({
+            title: lyrics.trim().split('\n')[0] || 'Generated Track',
+            artist: 'Super-Son1k User',
+            genre: config.mood || 'Electronic',
+            duration: config.duration,
+            generatedBy: 'anonymous',
+            tool: 'generator',
+            style: stylePrompt.trim(),
+            mood: config.mood,
+            tempo: config.tempo,
+            key: config.key,
+            language: config.language,
+            audioUrl: data.data.audio_url,
+            tags: [config.mood, config.tempo, config.key]
+          })
+        });
+      } catch (trackError) {
+        console.warn('Error registrando track:', trackError);
+      }
+
       // Agregar a historial
       setGenerationHistory(prev => [{
         id: data.data.generation_id,

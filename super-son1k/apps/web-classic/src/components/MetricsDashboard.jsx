@@ -6,6 +6,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import useTheme from '../hooks/useTheme';
 import useAnimations from '../hooks/useAnimations';
+import TopTracks from './TopTracks';
 import './MetricsDashboard.css';
 
 const MetricsDashboard = () => {
@@ -537,6 +538,14 @@ const MetricsDashboard = () => {
           </div>
         </div>
       )}
+
+      {/* Top Tracks Section */}
+      <div 
+        className={`top-tracks-section ${getAnimationClass('top-tracks-section', 'fadeInUp')}`}
+        ref={createAnimatedRef('fadeInUp')}
+      >
+        <TopTracks compact={false} />
+      </div>
 
       {/* Last Updated */}
       <div className="last-updated">
