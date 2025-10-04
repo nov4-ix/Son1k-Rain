@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AIProcessor } from './AIProcessor';
+import { Looper } from './Looper';
 import './AIProcessor.css';
+import './Looper.css';
 
 interface AudioTrack {
   id: string;
@@ -33,6 +35,7 @@ export const MiniDAW: React.FC<MiniDAWProps> = ({
   const [isRecording, setIsRecording] = useState(false);
   const [playheadPosition, setPlayheadPosition] = useState(0);
   const [currentBpm, setCurrentBpm] = useState(120);
+  const [activeView, setActiveView] = useState<'tracks' | 'looper'>('tracks');
   
   const audioContextRef = useRef<AudioContext | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -211,18 +214,18 @@ export const MiniDAW: React.FC<MiniDAWProps> = ({
         <h3 className="mini-daw-title">🎛️ Mini DAW</h3>
         <div className="mini-daw-actions">
           <button
-            className="action-btn"
-            onClick={() => addTrack('audio')}
-            title="Add Audio Track"
+            className={`view-btn ${activeView === 'tracks' ? 'active' : ''}`}
+            onClick={() => setActiveView('tracks')}
+            title="Tracks View"
           >
-            🎤 Audio
+            🎵 Tracks
           </button>
           <button
-            className="action-btn"
-            onClick={() => addTrack('midi')}
-            title="Add MIDI Track"
+            className={`view-btn ${activeView === 'looper' ? 'active' : ''}`}
+            onClick={() => setActiveView('looper')}
+            title="Looper View"
           >
-            🎹 MIDI
+            🔄 Looper
           </button>
         </div>
       </div>
@@ -265,16 +268,37 @@ export const MiniDAW: React.FC<MiniDAWProps> = ({
         </div>
       </div>
 
-      {/* Tracks */}
-      <div className="mini-tracks">
-        {tracks.length === 0 ? (
-          <div className="empty-tracks">
-            <div className="empty-icon">🎵</div>
-            <p>No tracks yet</p>
-            <p>Add tracks to start recording</p>
+      {/* Content based on active view */}
+      {activeView === 'tracks' ? (
+        <div className="mini-tracks">
+          <div className="tracks-header">
+            <h4 className="tracks-title">Audio Tracks</h4>
+            <div className="tracks-actions">
+              <button
+                className="action-btn"
+                onClick={() => addTrack('audio')}
+                title="Add Audio Track"
+              >
+                🎤 Audio
+              </button>
+              <button
+                className="action-btn"
+                onClick={() => addTrack('midi')}
+                title="Add MIDI Track"
+              >
+                🎹 MIDI
+              </button>
+            </div>
           </div>
-        ) : (
-          tracks.map((track, index) => (
+
+          {tracks.length === 0 ? (
+            <div className="empty-tracks">
+              <div className="empty-icon">🎵</div>
+              <p>No tracks yet</p>
+              <p>Add tracks to start recording</p>
+            </div>
+          ) : (
+            tracks.map((track, index) => (
             <motion.div
               key={track.id}
               className={`mini-track ${selectedTrackId === track.id ? 'selected' : ''}`}
@@ -384,7 +408,34 @@ export const MiniDAW: React.FC<MiniDAWProps> = ({
             </motion.div>
           ))
         )}
-      </div>
+        </div>
+      ) : (
+        <Looper
+          onLoopCreated={(loop) => {
+            console.log('Loop created:', loop);
+            // Convert loop to track
+            const track: AudioTrack = {
+              id: `track_${Date.now()}`,
+              name: loop.name,
+              type: 'audio',
+              source: loop.audioData ? URL.createObjectURL(loop.audioData) : '',
+              volume: loop.volume,
+              pan: 0,
+              mute: loop.mute,
+              solo: loop.solo,
+              isRecording: false,
+              duration: loop.duration,
+              color: loop.color
+            };
+            setTracks(prev => [...prev, track]);
+            setSelectedTrackId(track.id);
+          }}
+          onLoopExported={(loop) => {
+            console.log('Loop exported:', loop);
+            // Handle loop export
+          }}
+        />
+      )}
 
       {/* Selected Track Inspector */}
       {selectedTrack && (
