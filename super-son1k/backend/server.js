@@ -140,6 +140,10 @@ app.listen(PORT, () => {
     console.log(`   POST /api/tracks/generate`);
     console.log(`   POST /api/tracks/:id/play`);
     console.log(`   POST /api/tracks/:id/like`);
+    console.log(`   POST /api/auth/login`);
+    console.log(`   POST /api/auth/register`);
+    console.log(`   GET  /api/auth/me`);
+    console.log(`   POST /api/auth/refresh`);
   }
 });
 

@@ -30,8 +30,8 @@ class AuthService {
         },
         features: ['*'] // Todas las features
       },
-      pro: {
-        name: 'Professional',
+      enterprise: {
+        name: 'Enterprise',
         permissions: [
           'generate_music',
           'generate_lyrics',
@@ -40,20 +40,88 @@ class AuthService {
           'share_content',
           'analytics_access',
           'collaboration',
-          'priority_support'
+          'priority_support',
+          'white_label',
+          'api_access',
+          'custom_integrations',
+          'dedicated_support',
+          'admin_access'
         ],
         limits: {
-          generationsPerDay: 100,
-          tracksPerDay: 50,
-          apiCallsPerHour: 1000,
-          storageGB: 10
+          generationsPerDay: -1, // Ilimitado
+          tracksPerDay: -1,
+          apiCallsPerHour: -1,
+          storageGB: -1
+        },
+        features: [
+          'unlimited_generations',
+          'advanced_analytics',
+          'team_collaboration',
+          'priority_generation',
+          'custom_styles',
+          'bulk_operations',
+          'white_label_branding',
+          'api_access',
+          'custom_integrations',
+          'dedicated_support',
+          'sla_guarantee',
+          'custom_deployment'
+        ]
+      },
+      pro: {
+        name: 'Pro',
+        permissions: [
+          'generate_music',
+          'generate_lyrics',
+          'generate_covers',
+          'download_tracks',
+          'share_content',
+          'analytics_access',
+          'collaboration',
+          'priority_support',
+          'api_access'
+        ],
+        limits: {
+          generationsPerDay: 200,
+          tracksPerDay: 100,
+          apiCallsPerHour: 2000,
+          storageGB: 25
         },
         features: [
           'advanced_analytics',
           'team_collaboration',
           'priority_generation',
           'custom_styles',
-          'bulk_operations'
+          'bulk_operations',
+          'api_access',
+          'priority_support',
+          'advanced_export'
+        ]
+      },
+      premium: {
+        name: 'Premium',
+        permissions: [
+          'generate_music',
+          'generate_lyrics',
+          'generate_covers',
+          'download_tracks',
+          'share_content',
+          'analytics_access',
+          'collaboration'
+        ],
+        limits: {
+          generationsPerDay: 50,
+          tracksPerDay: 25,
+          apiCallsPerHour: 500,
+          storageGB: 5
+        },
+        features: [
+          'enhanced_analytics',
+          'team_collaboration',
+          'priority_generation',
+          'custom_styles',
+          'enhanced_export',
+          'priority_queue'
         ]
       },
       tester: {
@@ -78,7 +146,7 @@ class AuthService {
         ]
       },
       free: {
-        name: 'Free User',
+        name: 'Free',
         permissions: [
           'generate_music',
           'download_tracks',
@@ -92,7 +160,8 @@ class AuthService {
         },
         features: [
           'basic_generation',
-          'community_access'
+          'community_access',
+          'basic_export'
         ]
       }
     };
@@ -126,7 +195,7 @@ class AuthService {
     this.createUser({
       email: 'pro.enterprise@son1kvers3.com',
       password: 'Premium!123',
-      role: 'pro',
+      role: 'enterprise',
       nickname: 'Josué Enterprise',
       isFounder: true,
       isActive: true,
@@ -140,12 +209,12 @@ class AuthService {
       }
     });
 
-    // 10 Testers
+    // 10 Testers Premium
     for (let i = 1; i <= 10; i++) {
       this.createUser({
         email: `pro.tester${i}@sonikvers3.com`,
         password: 'Premium!123',
-        role: 'tester',
+        role: 'premium',
         nickname: `Tester${i}`,
         isFounder: true,
         isActive: true,
