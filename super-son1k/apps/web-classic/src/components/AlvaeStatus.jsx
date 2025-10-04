@@ -203,12 +203,15 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
               <div className="evaluation-score">
                 <div className="score-circle">
                   <span className="score-value">{evaluation.score}</span>
-                  <span className="score-max">/ {evaluation.maxScore}</span>
+                  <span className="score-max">/ 200</span>
                 </div>
                 <div className="score-status">
                   <span className={`status-badge ${evaluation.eligible ? 'eligible' : 'not-eligible'}`}>
-                    {evaluation.eligible ? '✅ ELEGIBLE' : '⏳ EN PROGRESO'}
+                    {evaluation.eligible ? '✅ DIVINO' : '⏳ EN BÚSQUEDA'}
                   </span>
+                </div>
+                <div className="score-difficulty">
+                  <span className="difficulty-text">SÚPER DIFÍCIL</span>
                 </div>
               </div>
 
@@ -218,14 +221,16 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
                     anima: 'ANIMA',
                     lumenVitae: 'LUMEN VITAE',
                     echo: 'ECHO',
-                    vibration: 'VIBRATION'
+                    vibration: 'VIBRATION',
+                    divineResistance: 'RESISTENCIA DIVINA'
                   };
                   
                   const criterionIcons = {
                     anima: '🔮',
                     lumenVitae: '💫',
                     echo: '🌊',
-                    vibration: '⚡'
+                    vibration: '⚡',
+                    divineResistance: '👑'
                   };
                   
                   return (
@@ -322,34 +327,48 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
 
           {/* Estadísticas ALVAE globales */}
           <div className="alvae-global-stats">
-            <h3>🌍 Estadísticas ALVAE Globales</h3>
+            <h3>🌍 Estadísticas de la Divina Liga del No Silencio</h3>
             <div className="stats-grid">
               <div className="stat-card">
                 <div className="stat-icon">👑</div>
                 <div className="stat-info">
                   <div className="stat-value">2</div>
-                  <div className="stat-label">Grand Masters</div>
+                  <div className="stat-label">Architects</div>
                 </div>
               </div>
               <div className="stat-card">
-                <div className="stat-icon">🏆</div>
+                <div className="stat-icon">⚡</div>
                 <div className="stat-info">
-                  <div className="stat-value">0</div>
-                  <div className="stat-label">Masters</div>
+                  <div className="stat-value">10</div>
+                  <div className="stat-label">Echo Warriors</div>
                 </div>
               </div>
               <div className="stat-card">
-                <div className="stat-icon">✨</div>
+                <div className="stat-icon">🔮</div>
                 <div className="stat-info">
-                  <div className="stat-value">0</div>
-                  <div className="stat-label">Members</div>
+                  <div className="stat-value">12</div>
+                  <div className="stat-label">Total ALVAE</div>
                 </div>
               </div>
               <div className="stat-card">
                 <div className="stat-icon">🎯</div>
                 <div className="stat-info">
-                  <div className="stat-value">0.02%</div>
+                  <div className="stat-value">0.001%</div>
                   <div className="stat-label">Tasa de éxito</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">⚡</div>
+                <div className="stat-info">
+                  <div className="stat-value">200</div>
+                  <div className="stat-label">Puntos requeridos</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">🔥</div>
+                <div className="stat-info">
+                  <div className="stat-value">IMPOSSIBLE</div>
+                  <div className="stat-label">Dificultad</div>
                 </div>
               </div>
             </div>

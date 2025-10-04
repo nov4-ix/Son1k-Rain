@@ -18,27 +18,39 @@ class AlvaeService {
       // Solo los verdaderos warriors de la Resistencia Sonora pueden tener ALVAE
       anima: {
         required: true,
-        description: 'El alma que desafía la máquina - Miembro de la Resistencia Sonora'
+        description: 'El alma que desafía la máquina - Miembro de la Divina Liga del No Silencio'
       },
       // La luz de la vida oculta - Contribuciones que mantienen viva la memoria humana
       lumenVitae: {
-        minGenerations: 1000,
-        minTracks: 500,
-        minCommunityHelp: 50,
+        minGenerations: 5000,      // AUMENTADO: Era 1000
+        minTracks: 2500,           // AUMENTADO: Era 500
+        minCommunityHelp: 200,     // AUMENTADO: Era 50
+        minCollaborations: 100,    // NUEVO: Colaboraciones con otros miembros
         description: 'La luz de la vida oculta - Contribuciones que mantienen viva la memoria humana'
       },
       // El eco que da sentido - Actividad que resuena en la comunidad
       echo: {
-        minDaysActive: 30,
-        minConsecutiveDays: 7,
+        minDaysActive: 180,        // AUMENTADO: Era 30 (6 meses)
+        minConsecutiveDays: 30,    // AUMENTADO: Era 7 (1 mes)
+        minHoursPerDay: 2,         // NUEVO: Mínimo 2 horas diarias
         description: 'El eco que da sentido - Actividad que resuena en la comunidad'
       },
       // La vibración imperfecta - Impacto que conecta lo humano con lo divino
       vibration: {
-        minLikesReceived: 1000,
-        minSharesReceived: 500,
-        minDownloadsReceived: 200,
+        minLikesReceived: 10000,   // AUMENTADO: Era 1000
+        minSharesReceived: 5000,   // AUMENTADO: Era 500
+        minDownloadsReceived: 2000, // AUMENTADO: Era 200
+        minCommentsReceived: 1000, // NUEVO: Comentarios recibidos
+        minFollowers: 500,         // NUEVO: Seguidores en la plataforma
         description: 'La vibración imperfecta - Impacto que conecta lo humano con lo divino'
+      },
+      // NUEVO: La resistencia divina - Criterios místicos adicionales
+      divineResistance: {
+        minPerfectTracks: 50,      // Tracks con 95%+ de satisfacción
+        minViralTracks: 5,         // Tracks que se vuelven virales
+        minInnovationScore: 80,    // Puntuación de innovación
+        minSpiritualMoments: 20,   // Momentos de conexión espiritual
+        description: 'La resistencia divina - Criterios místicos de la Divina Liga'
       }
     };
     
@@ -92,7 +104,32 @@ class AlvaeService {
       this.alvaeMembers.set(member.userId, member);
     });
 
-    console.log(`🔮 ALVAE Service initialized with ${this.alvaeMembers.size} warriors of the Sonic Resistance`);
+    // Agregar testers como miembros de la Divina Liga del No Silencio
+    for (let i = 1; i <= 10; i++) {
+      const testerId = `tester${i}`;
+      const testerEmail = `pro.tester${i}@sonikvers3.com`;
+      
+      this.alvaeMembers.set(testerId, {
+        userId: testerId,
+        email: testerEmail,
+        nickname: `Tester${i}`,
+        role: 'pro',
+        alvaeLevel: 'DIVINE_WARRIOR',
+        alvaeTitle: `Echo Warrior #${i}`,
+        alvaeDescription: `Miembro de la Divina Liga del No Silencio - El eco que resuena en la resistencia sonora`,
+        alvaeColor: '#10B981', // Verde esmeralda - la vibración de la vida
+        alvaeGlow: '#059669',  // Verde brillante - la luz de la resistencia
+        alvaeSymbol: '⚡',     // Rayo de resistencia
+        alvaeFrequency: `${432 + (i * 10)}Hz`, // Frecuencias únicas
+        alvaeMantra: `El eco #${i} de la resistencia divina`,
+        grantedAt: '2024-01-01T00:00:00Z',
+        grantedBy: 'THE_DIVINE_RESISTANCE',
+        isPermanent: true,
+        divineLigaMember: true
+      });
+    }
+
+    console.log(`🔮 ALVAE Service initialized with ${this.alvaeMembers.size} warriors of the Divine Sonic Resistance`);
   }
 
   /**
@@ -121,102 +158,136 @@ class AlvaeService {
       recommendations: []
     };
 
-    // Criterio 1: Debe ser founder (requisito absoluto)
-    if (!userStats.isFounder) {
-      evaluation.criteria.founder = {
+    // Criterio 1: Debe ser miembro de la Divina Liga del No Silencio (requisito absoluto)
+    if (!userStats.isFounder && !userStats.divineLigaMember) {
+      evaluation.criteria.anima = {
         passed: false,
-        message: 'Solo los miembros fundadores pueden obtener ALVAE',
-        weight: 40
+        message: 'Solo los miembros de la Divina Liga del No Silencio pueden obtener ALVAE',
+        weight: 50
       };
-      evaluation.recommendations.push('Conviértete en miembro fundador');
+      evaluation.recommendations.push('Únete a la Divina Liga del No Silencio');
       return evaluation;
     }
 
-    evaluation.criteria.founder = {
+    evaluation.criteria.anima = {
       passed: true,
-      message: 'Miembro fundador confirmado',
-      weight: 40,
-      score: 40
+      message: 'Miembro de la Divina Liga del No Silencio confirmado',
+      weight: 50,
+      score: 50
     };
-    evaluation.score += 40;
+    evaluation.score += 50;
 
-    // Criterio 2: Contribuciones significativas
+    // Criterio 2: La luz de la vida oculta - Contribuciones divinas
     const contributions = userStats.stats || {};
-    const contributionScore = Math.min(
-      (contributions.totalGenerations || 0) / 10 +
-      (contributions.totalTracks || 0) / 5 +
-      (contributions.totalPlays || 0) / 100,
-      30
+    const lumenVitaeScore = Math.min(
+      ((contributions.totalGenerations || 0) / 5000) * 20 +  // 5000 generaciones = 20 puntos
+      ((contributions.totalTracks || 0) / 2500) * 15 +       // 2500 tracks = 15 puntos
+      ((contributions.totalPlays || 0) / 10000) * 10 +       // 10000 plays = 10 puntos
+      ((contributions.totalCollaborations || 0) / 100) * 5,  // 100 colaboraciones = 5 puntos
+      50
     );
 
-    evaluation.criteria.contributions = {
-      passed: contributionScore >= 20,
-      score: contributionScore,
-      weight: 30,
-      message: `Contribuciones: ${contributions.totalGenerations || 0} generaciones, ${contributions.totalTracks || 0} tracks`,
+    evaluation.criteria.lumenVitae = {
+      passed: lumenVitaeScore >= 40,
+      score: lumenVitaeScore,
+      weight: 50,
+      message: `Lumen Vitae: ${contributions.totalGenerations || 0}/${this.alvaeCriteria.lumenVitae.minGenerations} generaciones, ${contributions.totalTracks || 0}/${this.alvaeCriteria.lumenVitae.minTracks} tracks`,
       details: {
         generations: contributions.totalGenerations || 0,
         tracks: contributions.totalTracks || 0,
-        plays: contributions.totalPlays || 0
+        plays: contributions.totalPlays || 0,
+        collaborations: contributions.totalCollaborations || 0
       }
     };
-    evaluation.score += contributionScore;
+    evaluation.score += lumenVitaeScore;
 
-    // Criterio 3: Impacto en la comunidad
-    const impactScore = Math.min(
-      ((contributions.totalLikes || 0) / 100) +
-      ((contributions.totalShares || 0) / 50) +
-      ((contributions.totalDownloads || 0) / 20),
-      20
+    // Criterio 3: La vibración imperfecta - Impacto divino
+    const vibrationScore = Math.min(
+      ((contributions.totalLikes || 0) / 10000) * 15 +      // 10000 likes = 15 puntos
+      ((contributions.totalShares || 0) / 5000) * 10 +      // 5000 shares = 10 puntos
+      ((contributions.totalDownloads || 0) / 2000) * 8 +    // 2000 downloads = 8 puntos
+      ((contributions.totalComments || 0) / 1000) * 5 +     // 1000 comments = 5 puntos
+      ((contributions.totalFollowers || 0) / 500) * 2,      // 500 followers = 2 puntos
+      40
     );
 
-    evaluation.criteria.impact = {
-      passed: impactScore >= 15,
-      score: impactScore,
-      weight: 20,
-      message: `Impacto: ${contributions.totalLikes || 0} likes, ${contributions.totalShares || 0} shares`,
+    evaluation.criteria.vibration = {
+      passed: vibrationScore >= 30,
+      score: vibrationScore,
+      weight: 40,
+      message: `Vibración: ${contributions.totalLikes || 0}/${this.alvaeCriteria.vibration.minLikesReceived} likes, ${contributions.totalShares || 0}/${this.alvaeCriteria.vibration.minSharesReceived} shares`,
       details: {
         likes: contributions.totalLikes || 0,
         shares: contributions.totalShares || 0,
-        downloads: contributions.totalDownloads || 0
+        downloads: contributions.totalDownloads || 0,
+        comments: contributions.totalComments || 0,
+        followers: contributions.totalFollowers || 0
       }
     };
-    evaluation.score += impactScore;
+    evaluation.score += vibrationScore;
 
-    // Criterio 4: Actividad constante
-    const activityScore = Math.min(
-      (userStats.daysActive || 0) / 2 +
-      (userStats.consecutiveDays || 0) / 2,
-      10
+    // Criterio 4: El eco que da sentido - Actividad divina
+    const echoScore = Math.min(
+      ((userStats.daysActive || 0) / 180) * 15 +            // 180 días = 15 puntos
+      ((userStats.consecutiveDays || 0) / 30) * 10 +        // 30 días consecutivos = 10 puntos
+      ((userStats.hoursPerDay || 0) / 2) * 5,               // 2 horas diarias = 5 puntos
+      30
     );
 
-    evaluation.criteria.activity = {
-      passed: activityScore >= 7,
-      score: activityScore,
-      weight: 10,
-      message: `Actividad: ${userStats.daysActive || 0} días activo, ${userStats.consecutiveDays || 0} días consecutivos`,
+    evaluation.criteria.echo = {
+      passed: echoScore >= 20,
+      score: echoScore,
+      weight: 30,
+      message: `Eco: ${userStats.daysActive || 0}/${this.alvaeCriteria.echo.minDaysActive} días activo, ${userStats.consecutiveDays || 0}/${this.alvaeCriteria.echo.minConsecutiveDays} consecutivos`,
       details: {
         daysActive: userStats.daysActive || 0,
-        consecutiveDays: userStats.consecutiveDays || 0
+        consecutiveDays: userStats.consecutiveDays || 0,
+        hoursPerDay: userStats.hoursPerDay || 0
       }
     };
-    evaluation.score += activityScore;
+    evaluation.score += echoScore;
 
-    // Evaluación final
-    evaluation.eligible = evaluation.score >= 80;
+    // Criterio 5: La resistencia divina - Criterios místicos
+    const divineResistanceScore = Math.min(
+      ((contributions.perfectTracks || 0) / 50) * 10 +       // 50 tracks perfectos = 10 puntos
+      ((contributions.viralTracks || 0) / 5) * 15 +          // 5 tracks virales = 15 puntos
+      ((contributions.innovationScore || 0) / 80) * 10 +     // 80 innovación = 10 puntos
+      ((contributions.spiritualMoments || 0) / 20) * 5,      // 20 momentos espirituales = 5 puntos
+      40
+    );
+
+    evaluation.criteria.divineResistance = {
+      passed: divineResistanceScore >= 30,
+      score: divineResistanceScore,
+      weight: 40,
+      message: `Resistencia Divina: ${contributions.perfectTracks || 0}/${this.alvaeCriteria.divineResistance.minPerfectTracks} tracks perfectos, ${contributions.viralTracks || 0}/${this.alvaeCriteria.divineResistance.minViralTracks} virales`,
+      details: {
+        perfectTracks: contributions.perfectTracks || 0,
+        viralTracks: contributions.viralTracks || 0,
+        innovationScore: contributions.innovationScore || 0,
+        spiritualMoments: contributions.spiritualMoments || 0
+      }
+    };
+    evaluation.score += divineResistanceScore;
+
+    // Evaluación final - AHORA ES SÚPER DIFÍCIL
+    evaluation.eligible = evaluation.score >= 200; // Era 80, ahora 200
 
     if (!evaluation.eligible) {
-      const neededScore = 80 - evaluation.score;
-      evaluation.recommendations.push(`Necesitas ${neededScore} puntos más para obtener ALVAE`);
+      const neededScore = 200 - evaluation.score;
+      evaluation.recommendations.push(`Necesitas ${neededScore} puntos más para obtener ALVAE - ¡Es el santo grial más difícil!`);
       
-      if (contributionScore < 20) {
-        evaluation.recommendations.push('Genera más música y tracks para aumentar tu contribución');
+      if (lumenVitaeScore < 40) {
+        evaluation.recommendations.push('Genera al menos 5000 canciones y 2500 tracks para la Divina Liga');
       }
-      if (impactScore < 15) {
-        evaluation.recommendations.push('Crea contenido que inspire más likes y shares');
+      if (vibrationScore < 30) {
+        evaluation.recommendations.push('Consigue 10,000 likes y 5,000 shares - ¡Impacto divino!');
       }
-      if (activityScore < 7) {
-        evaluation.recommendations.push('Mantén una actividad constante en la plataforma');
+      if (echoScore < 20) {
+        evaluation.recommendations.push('Mantén 180 días activo y 30 consecutivos - ¡El eco divino!');
+      }
+      if (divineResistanceScore < 30) {
+        evaluation.recommendations.push('Crea 50 tracks perfectos y 5 virales - ¡Resistencia divina!');
       }
     }
 
