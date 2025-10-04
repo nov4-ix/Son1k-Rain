@@ -15,11 +15,15 @@ import React, { useState, useEffect } from 'react';
 import useTheme from '../hooks/useTheme';
 import useAnimations from '../hooks/useAnimations';
 import './AlvaeStatus.css';
+import AlvaeProgress from './AlvaeProgress';
+import AlvaeMissions from './AlvaeMissions';
+import AlvaeNotifications from './AlvaeNotifications';
 
 const AlvaeStatus = ({ user, onUpdateProfile }) => {
   const [alvaeInfo, setAlvaeInfo] = useState(null);
   const [evaluation, setEvaluation] = useState(null);
   const [motivation, setMotivation] = useState(null);
+  const [activeTab, setActiveTab] = useState('status');
   const [isLoading, setIsLoading] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   
@@ -104,6 +108,17 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
     }
   };
 
+  const handleMissionComplete = (mission) => {
+    // Lógica para completar misión
+    console.log('Misión completada:', mission);
+    // Aquí podrías actualizar el estado del usuario o enviar una notificación
+    setMotivation({
+      type: 'success',
+      message: `¡Misión completada! +${mission.reward} puntos`,
+      action: 'Has ganado puntos bonus hacia ALVAE'
+    });
+  };
+
   if (!user) {
     return (
       <div className="alvae-status-restricted">
@@ -132,12 +147,46 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
         </div>
       </div>
 
+      {/* Pestañas */}
+      <div className="alvae-tabs">
+        <button
+          className={`tab-button ${activeTab === 'status' ? 'active' : ''}`}
+          onClick={() => setActiveTab('status')}
+        >
+          <span className="tab-icon">🔮</span>
+          <span className="tab-label">Status</span>
+        </button>
+        <button
+          className={`tab-button ${activeTab === 'progress' ? 'active' : ''}`}
+          onClick={() => setActiveTab('progress')}
+        >
+          <span className="tab-icon">📊</span>
+          <span className="tab-label">Progreso</span>
+        </button>
+        <button
+          className={`tab-button ${activeTab === 'missions' ? 'active' : ''}`}
+          onClick={() => setActiveTab('missions')}
+        >
+          <span className="tab-icon">🎯</span>
+          <span className="tab-label">Misiones</span>
+        </button>
+        <button
+          className={`tab-button ${activeTab === 'notifications' ? 'active' : ''}`}
+          onClick={() => setActiveTab('notifications')}
+        >
+          <span className="tab-icon">🔔</span>
+          <span className="tab-label">Notificaciones</span>
+        </button>
+      </div>
+
       {isLoading ? (
         <div className="loading-state">
           <div className="loading-spinner"></div>
           <p>Evaluando tu elegibilidad ALVAE...</p>
         </div>
       ) : (
+        <div className="alvae-content">
+          {activeTab === 'status' && (
         <>
           {/* Status actual */}
           <div className="alvae-current-status">
@@ -409,7 +458,29 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
               </div>
             </div>
           </div>
-        </>
+          )}
+
+          {activeTab === 'progress' && (
+            <AlvaeProgress 
+              userStats={user} 
+              evaluation={evaluation} 
+            />
+          )}
+
+          {activeTab === 'missions' && (
+            <AlvaeMissions 
+              userStats={user} 
+              onMissionComplete={handleMissionComplete}
+            />
+          )}
+
+          {activeTab === 'notifications' && (
+            <AlvaeNotifications 
+              userStats={user} 
+              evaluation={evaluation} 
+            />
+          )}
+        </div>
       )}
     </div>
   );

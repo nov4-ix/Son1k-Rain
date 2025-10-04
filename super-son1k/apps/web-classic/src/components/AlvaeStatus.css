@@ -886,3 +886,104 @@
   text-shadow: none;
   animation: none;
 }
+
+/* Pestañas ALVAE */
+.alvae-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 0 1rem;
+}
+
+.tab-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--alvae-gold);
+}
+
+.tab-button.active {
+  background: linear-gradient(135deg, var(--alvae-gold), var(--alvae-glow));
+  border-color: var(--alvae-gold);
+  color: white;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  animation: tabPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes tabPulse {
+  0% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+    transform: translateY(-4px);
+  }
+}
+
+.tab-icon {
+  font-size: 1.5rem;
+  animation: tabIconFloat 3s ease-in-out infinite;
+}
+
+@keyframes tabIconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.tab-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tab-button.active .tab-label {
+  color: white;
+}
+
+/* Contenido ALVAE */
+.alvae-content {
+  min-height: 400px;
+}
+
+/* Responsive para pestañas */
+@media (max-width: 768px) {
+  .alvae-tabs {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .tab-button {
+    min-width: 100px;
+    padding: 0.8rem 1rem;
+  }
+  
+  .tab-icon {
+    font-size: 1.2rem;
+  }
+  
+  .tab-label {
+    font-size: 0.8rem;
+  }
+}
