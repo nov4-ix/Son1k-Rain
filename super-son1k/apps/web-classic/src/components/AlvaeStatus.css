@@ -90,6 +90,20 @@
   font-size: 1rem;
   color: var(--color-textMuted);
   font-style: italic;
+  margin-bottom: 15px;
+}
+
+.alvae-mantra {
+  font-size: 1rem;
+  color: var(--alvae-gold);
+  font-style: italic;
+  text-align: center;
+  padding: 15px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid var(--alvae-border);
+  border-radius: var(--radius-lg);
+  margin-top: 15px;
+  line-height: 1.6;
 }
 
 /* Estado de carga */
@@ -192,6 +206,39 @@
   color: var(--alvae-gold);
 }
 
+.alvae-frequency {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.frequency-label {
+  font-size: 0.9rem;
+  color: var(--color-textSecondary);
+  margin-right: 8px;
+}
+
+.frequency-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--alvae-gold);
+  font-family: 'Courier New', monospace;
+}
+
+.alvae-mantra-personal {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.mantra-text {
+  font-size: 0.9rem;
+  color: var(--alvae-gold);
+  font-style: italic;
+  padding: 10px;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: var(--radius-md);
+  display: inline-block;
+}
+
 .alvae-details {
   display: flex;
   justify-content: center;
@@ -235,6 +282,7 @@
 
 .alvae-status-badge {
   display: inline-block;
+  margin-bottom: 15px;
 }
 
 .status-text {
@@ -246,6 +294,16 @@
   letter-spacing: 1px;
   background: var(--color-warning);
   color: white;
+}
+
+.alvae-search-mantra {
+  font-size: 0.9rem;
+  color: var(--alvae-gold);
+  font-style: italic;
+  text-align: center;
+  padding: 10px;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: var(--radius-md);
 }
 
 /* Evaluación de elegibilidad */
@@ -670,6 +728,57 @@
 
 .info-content li strong {
   color: var(--alvae-gold);
+}
+
+.alvae-meaning {
+  margin-bottom: 25px;
+}
+
+.alvae-meaning h4 {
+  color: var(--color-text);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.alvae-meaning ul {
+  list-style: none;
+  padding: 0;
+}
+
+.alvae-meaning li {
+  padding: 8px 0;
+  font-size: 1rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alvae-philosophy {
+  margin-top: 25px;
+}
+
+.alvae-philosophy h4 {
+  color: var(--color-text);
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.alvae-philosophy ul {
+  list-style: none;
+  padding: 0;
+}
+
+.alvae-philosophy li {
+  padding: 10px 0;
+  font-size: 1rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
 }
 
 /* Responsive Design */

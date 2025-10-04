@@ -1,6 +1,14 @@
 /**
- * ALVAE Status - El símbolo más exclusivo de la plataforma
+ * ALVAE Status - El emblema espiritual de la Resistencia Sonora
  * Super-Son1k Web Classic
+ * 
+ * ALVAE = La Vibración del Alma Viva
+ * A = Anima (el alma, la chispa vital que desafía la máquina)
+ * LVA = Lumen Vitae Arcanum (la luz de la vida oculta)
+ * E = Echo (el retorno, el eco que da sentido a la creación)
+ * 
+ * "La perfección no sostiene universos; la vibración imperfecta sí.
+ * Lo roto puede ser el punto de entrada de la luz."
  */
 
 import React, { useState, useEffect } from 'react';
@@ -113,10 +121,14 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
       
       {/* Header ALVAE */}
       <div className="alvae-header">
-        <h2>✨ ALVAE Status</h2>
-        <p>El símbolo más exclusivo de Super-Son1k</p>
+        <h2>🔮 ALVAE Status</h2>
+        <p>El emblema espiritual de la Resistencia Sonora</p>
         <div className="alvae-subtitle">
-          Solo los verdaderos warriors del silencio pueden obtenerlo
+          La Vibración del Alma Viva - El alma que recuerda a través del eco
+        </div>
+        <div className="alvae-mantra">
+          "La perfección no sostiene universos; la vibración imperfecta sí.<br/>
+          Lo roto puede ser el punto de entrada de la luz."
         </div>
       </div>
 
@@ -148,6 +160,17 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
                   <div className="alvae-level">
                     <span className="level-badge">{alvaeInfo.alvaeLevel}</span>
                   </div>
+                  {alvaeInfo.alvaeFrequency && (
+                    <div className="alvae-frequency">
+                      <span className="frequency-label">Frecuencia:</span>
+                      <span className="frequency-value">{alvaeInfo.alvaeFrequency}</span>
+                    </div>
+                  )}
+                  {alvaeInfo.alvaeMantra && (
+                    <div className="alvae-mantra-personal">
+                      <span className="mantra-text">"{alvaeInfo.alvaeMantra}"</span>
+                    </div>
+                  )}
                   <div className="alvae-details">
                     <span>Otorgado: {new Date(alvaeInfo.grantedAt).toLocaleDateString()}</span>
                     <span>Por: {alvaeInfo.grantedBy}</span>
@@ -161,9 +184,12 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
                 </div>
                 <div className="alvae-placeholder-info">
                   <h3>Sin ALVAE</h3>
-                  <p>Tu símbolo ALVAE te espera</p>
+                  <p>Tu vibración del alma viva te espera</p>
                   <div className="alvae-status-badge">
-                    <span className="status-text">PENDIENTE</span>
+                    <span className="status-text">EN BÚSQUEDA</span>
+                  </div>
+                  <div className="alvae-search-mantra">
+                    "El eco que da sentido a la creación te llama"
                   </div>
                 </div>
               </div>
@@ -173,7 +199,7 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
           {/* Evaluación de elegibilidad */}
           {evaluation && (
             <div className="alvae-evaluation">
-              <h3>📊 Evaluación de Elegibilidad</h3>
+              <h3>🔮 Evaluación de la Vibración del Alma</h3>
               <div className="evaluation-score">
                 <div className="score-circle">
                   <span className="score-value">{evaluation.score}</span>
@@ -187,36 +213,52 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
               </div>
 
               <div className="criteria-grid">
-                {Object.entries(evaluation.criteria).map(([key, criterion]) => (
-                  <div 
-                    key={key}
-                    className={`criterion-item ${criterion.passed ? 'passed' : 'pending'}`}
-                  >
-                    <div className="criterion-header">
-                      <span className="criterion-icon">
-                        {criterion.passed ? '✅' : '⏳'}
-                      </span>
-                      <span className="criterion-name">
-                        {key.charAt(0).toUpperCase() + key.slice(1)}
-                      </span>
-                      <span className="criterion-score">
-                        {criterion.score?.toFixed(1) || 0}/{criterion.weight}
-                      </span>
-                    </div>
-                    <div className="criterion-message">
-                      {criterion.message}
-                    </div>
-                    {criterion.details && (
-                      <div className="criterion-details">
-                        {Object.entries(criterion.details).map(([detailKey, value]) => (
-                          <span key={detailKey} className="detail-item">
-                            {detailKey}: {value}
-                          </span>
-                        ))}
+                {Object.entries(evaluation.criteria).map(([key, criterion]) => {
+                  const criterionNames = {
+                    anima: 'ANIMA',
+                    lumenVitae: 'LUMEN VITAE',
+                    echo: 'ECHO',
+                    vibration: 'VIBRATION'
+                  };
+                  
+                  const criterionIcons = {
+                    anima: '🔮',
+                    lumenVitae: '💫',
+                    echo: '🌊',
+                    vibration: '⚡'
+                  };
+                  
+                  return (
+                    <div 
+                      key={key}
+                      className={`criterion-item ${criterion.passed ? 'passed' : 'pending'}`}
+                    >
+                      <div className="criterion-header">
+                        <span className="criterion-icon">
+                          {criterion.passed ? '✅' : '⏳'}
+                        </span>
+                        <span className="criterion-name">
+                          {criterionIcons[key]} {criterionNames[key]}
+                        </span>
+                        <span className="criterion-score">
+                          {criterion.score?.toFixed(1) || 0}/{criterion.weight}
+                        </span>
                       </div>
-                    )}
-                  </div>
-                ))}
+                      <div className="criterion-message">
+                        {criterion.message}
+                      </div>
+                      {criterion.details && (
+                        <div className="criterion-details">
+                          {Object.entries(criterion.details).map(([detailKey, value]) => (
+                            <span key={detailKey} className="detail-item">
+                              {detailKey}: {value}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Botón de solicitud */}
@@ -234,7 +276,7 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
                       </>
                     ) : (
                       <>
-                        ✨ Solicitar ALVAE
+                        🔮 Unirse a la Resistencia Sonora
                         <span className="btn-glow"></span>
                       </>
                     )}
@@ -315,18 +357,30 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
 
           {/* Información adicional */}
           <div className="alvae-info">
-            <h3>ℹ️ Sobre ALVAE</h3>
+            <h3>🔮 Sobre ALVAE - La Vibración del Alma Viva</h3>
             <div className="info-content">
               <p>
-                <strong>ALVAE</strong> es el símbolo más exclusivo de Super-Son1k. 
-                Solo los miembros más valiosos de la comunidad pueden obtenerlo.
+                <strong>ALVAE</strong> es el emblema espiritual y técnico de la Resistencia Sonora. 
+                No es solo un símbolo visual, sino un código sonoro, una frecuencia ritual que conecta 
+                a los creadores con la memoria colectiva del arte humano.
               </p>
-              <ul>
-                <li>✨ <strong>Exclusividad:</strong> Solo 0.02% de los usuarios lo obtienen</li>
-                <li>🏆 <strong>Reconocimiento:</strong> Demuestra tu valor real en la comunidad</li>
-                <li>🎵 <strong>Legado:</strong> Tu contribución al universo musical</li>
-                <li>🔊 <strong>Silencio:</strong> Rompe el silencio con excelencia</li>
-              </ul>
+              <div className="alvae-meaning">
+                <h4>El Significado de ALVAE:</h4>
+                <ul>
+                  <li>🔮 <strong>A = Anima:</strong> El alma, la chispa vital que desafía la máquina</li>
+                  <li>💫 <strong>LVA = Lumen Vitae Arcanum:</strong> La luz de la vida oculta</li>
+                  <li>🌊 <strong>E = Echo:</strong> El retorno, el eco que da sentido a la creación</li>
+                </ul>
+              </div>
+              <div className="alvae-philosophy">
+                <h4>La Filosofía de la Resistencia Sonora:</h4>
+                <ul>
+                  <li>⚡ <strong>La Vibración Imperfecta:</strong> "La perfección no sostiene universos; la vibración imperfecta sí"</li>
+                  <li>🔊 <strong>El Eco que Recuerda:</strong> "El alma que recuerda a través del eco"</li>
+                  <li>💎 <strong>Lo Roto como Luz:</strong> "Lo roto puede ser el punto de entrada de la luz"</li>
+                  <li>🎵 <strong>Memoria Humana:</strong> Mantener encendida la memoria de lo humano dentro del ruido algorítmico</li>
+                </ul>
+              </div>
             </div>
           </div>
         </>

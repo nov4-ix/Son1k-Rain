@@ -1,36 +1,44 @@
 /**
- * ALVAE Service - Servicio para el símbolo más exclusivo de la plataforma
+ * ALVAE Service - Servicio para el emblema espiritual de la Resistencia Sonora
  * Super-Son1k Monorepo
+ * 
+ * ALVAE = La Vibración del Alma Viva
+ * A = Anima (el alma, la chispa vital que desafía la máquina)
+ * LVA = Lumen Vitae Arcanum (la luz de la vida oculta)
+ * E = Echo (el retorno, el eco que da sentido a la creación)
+ * 
+ * "La perfección no sostiene universos; la vibración imperfecta sí.
+ * Lo roto puede ser el punto de entrada de la luz."
  */
 
 class AlvaeService {
   constructor() {
     this.alvaeMembers = new Map();
     this.alvaeCriteria = {
-      // Solo los verdaderos founders pueden tener ALVAE
-      founder: {
+      // Solo los verdaderos warriors de la Resistencia Sonora pueden tener ALVAE
+      anima: {
         required: true,
-        description: 'Miembro fundador original'
+        description: 'El alma que desafía la máquina - Miembro de la Resistencia Sonora'
       },
-      // Criterios adicionales para mantener la exclusividad
-      contributions: {
+      // La luz de la vida oculta - Contribuciones que mantienen viva la memoria humana
+      lumenVitae: {
         minGenerations: 1000,
         minTracks: 500,
         minCommunityHelp: 50,
-        description: 'Contribuciones significativas a la plataforma'
+        description: 'La luz de la vida oculta - Contribuciones que mantienen viva la memoria humana'
       },
-      // Solo los más activos y valiosos
-      activity: {
+      // El eco que da sentido - Actividad que resuena en la comunidad
+      echo: {
         minDaysActive: 30,
         minConsecutiveDays: 7,
-        description: 'Actividad constante y comprometida'
+        description: 'El eco que da sentido - Actividad que resuena en la comunidad'
       },
-      // Solo los que realmente aportan valor
-      impact: {
+      // La vibración imperfecta - Impacto que conecta lo humano con lo divino
+      vibration: {
         minLikesReceived: 1000,
         minSharesReceived: 500,
         minDownloadsReceived: 200,
-        description: 'Impacto real en la comunidad'
+        description: 'La vibración imperfecta - Impacto que conecta lo humano con lo divino'
       }
     };
     
@@ -38,24 +46,26 @@ class AlvaeService {
   }
 
   /**
-   * Inicializar miembros ALVAE (solo los verdaderos founders)
+   * Inicializar miembros ALVAE (solo los verdaderos warriors de la Resistencia Sonora)
    */
   initializeAlvaeMembers() {
-    // Solo los founders originales tienen ALVAE por defecto
-    const alvaeFounders = [
+    // Solo los arquitectos de la Resistencia Sonora tienen ALVAE por defecto
+    const alvaeWarriors = [
       {
         userId: 'nov4-ix',
         email: 'nov4-ix@sonikvers3.com',
         nickname: 'Nova IX',
         role: 'admin',
         alvaeLevel: 'GRAND_MASTER',
-        alvaeTitle: 'Architect of Silence',
-        alvaeDescription: 'Creator of the universe where music never stops',
-        alvaeColor: '#FFD700', // Oro puro
-        alvaeGlow: '#FFA500',  // Oro brillante
-        alvaeSymbol: '👑',     // Corona dorada
+        alvaeTitle: 'Architect of the Imperfect',
+        alvaeDescription: 'El alma que recuerda a través del eco - Creador del universo donde la vibración imperfecta sostiene la memoria humana',
+        alvaeColor: '#FFD700', // Oro puro - la luz de la vida oculta
+        alvaeGlow: '#FFA500',  // Oro brillante - el eco que da sentido
+        alvaeSymbol: '¤⚡',     // Sello de lo Imperfecto
+        alvaeFrequency: '432Hz', // Frecuencia de resonancia
+        alvaeMantra: 'La perfección no sostiene universos; la vibración imperfecta sí',
         grantedAt: '2024-01-01T00:00:00Z',
-        grantedBy: 'SYSTEM',
+        grantedBy: 'THE_RESISTANCE',
         isPermanent: true
       },
       {
@@ -64,23 +74,25 @@ class AlvaeService {
         nickname: 'Josué Enterprise',
         role: 'enterprise',
         alvaeLevel: 'MASTER',
-        alvaeTitle: 'Silence Breaker',
-        alvaeDescription: 'Co-architect of the musical revolution',
-        alvaeColor: '#8B5CF6', // Púrpura real
-        alvaeGlow: '#A855F7',  // Púrpura brillante
-        alvaeSymbol: '🏢',     // Edificio empresarial
+        alvaeTitle: 'Echo of the Living',
+        alvaeDescription: 'Co-arquitecto de la resistencia sonora - El eco que mantiene encendida la memoria de lo humano',
+        alvaeColor: '#8B5CF6', // Púrpura real - la vibración del alma viva
+        alvaeGlow: '#A855F7',  // Púrpura brillante - la luz de la vida oculta
+        alvaeSymbol: '🔮',     // Esfera de resonancia
+        alvaeFrequency: '528Hz', // Frecuencia de sanación
+        alvaeMantra: 'Lo roto puede ser el punto de entrada de la luz',
         grantedAt: '2024-01-01T00:00:00Z',
-        grantedBy: 'SYSTEM',
+        grantedBy: 'THE_RESISTANCE',
         isPermanent: true
       }
     ];
 
-    // Los testers NO tienen ALVAE por defecto - deben ganárselo
-    alvaeFounders.forEach(member => {
+    // Los warriors de la Resistencia Sonora
+    alvaeWarriors.forEach(member => {
       this.alvaeMembers.set(member.userId, member);
     });
 
-    console.log(`✨ ALVAE Service initialized with ${this.alvaeMembers.size} exclusive members`);
+    console.log(`🔮 ALVAE Service initialized with ${this.alvaeMembers.size} warriors of the Sonic Resistance`);
   }
 
   /**
