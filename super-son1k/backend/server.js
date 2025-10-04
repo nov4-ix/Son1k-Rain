@@ -15,6 +15,7 @@ const qwenRoutes = require('./routes/qwenRoutes');
 const sunoRoutes = require('./routes/sunoRoutes');
 const metricsRoutes = require('./routes/metricsRoutes');
 const trackRoutes = require('./routes/trackRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -65,6 +66,7 @@ app.use('/api/qwen', qwenRoutes);
 app.use('/api/suno', sunoRoutes);
 app.use('/api', metricsRoutes);
 app.use('/api', trackRoutes);
+app.use('/api', authRoutes);
 
 // Ruta raíz
 app.get('/', (req, res) => {
@@ -77,13 +79,16 @@ app.get('/', (req, res) => {
       suno: '/api/suno',
       metrics: '/api/metrics',
       tracks: '/api/tracks',
+      auth: '/api/auth',
       pixel: '/api/qwen/pixel/qwen-analyze',
       nova: '/api/qwen/nova/qwen-copy',
       clone: '/api/qwen/clone/qwen-clean',
       ghost: '/api/qwen/ghost/qwen-analyze',
       generator: '/api/suno/generator/generate-music',
       dashboard: '/api/metrics/dashboard',
-      topTracks: '/api/tracks/top'
+      topTracks: '/api/tracks/top',
+      login: '/api/auth/login',
+      register: '/api/auth/register'
     },
     documentation: '/docs'
   });
