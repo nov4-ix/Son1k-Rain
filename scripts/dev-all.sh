@@ -37,7 +37,8 @@ echo ""
 echo "🎯 Aplicaciones disponibles:"
 echo "  • Web Classic (Dashboard)     → http://localhost:3000"
 echo "  • Nexus Visual (Inmersivo)     → http://localhost:5173"
-echo "  • Ghost Studio (DAW)           → http://localhost:3001"
+echo "  • Ghost Studio (IA Musical)    → http://localhost:3001"
+echo "  • Sonic DAW (DAW Profesional)  → http://localhost:3005"
 echo "  • Clone Station (Datasets)     → http://localhost:3002"
 echo "  • Nova Post Pilot (Social)     → http://localhost:3003"
 echo "  • Sanctuary Social (Colaboración) → http://localhost:3004"
@@ -51,7 +52,8 @@ show_help() {
     echo "  all, --all        Iniciar todas las aplicaciones (por defecto)"
     echo "  web-classic      Solo Web Classic Dashboard"
     echo "  nexus-visual     Solo Nexus Visual Experience"
-    echo "  ghost-studio     Solo Ghost Studio DAW"
+    echo "  ghost-studio     Solo Ghost Studio (IA Musical)"
+    echo "  sonic-daw        Solo Sonic DAW (DAW Profesional)"
     echo "  clone-station    Solo Clone Station"
     echo "  nova-post-pilot  Solo Nova Post Pilot"
     echo "  sanctuary-social Solo Sanctuary Social"
@@ -60,7 +62,8 @@ show_help() {
     echo "Ejemplos:"
     echo "  $0                    # Iniciar todas las apps"
     echo "  $0 web-classic        # Solo dashboard"
-    echo "  $0 ghost-studio       # Solo DAW"
+    echo "  $0 ghost-studio       # Solo IA musical"
+    echo "  $0 sonic-daw          # Solo DAW profesional"
 }
 
 # Procesar argumentos
@@ -80,8 +83,12 @@ case "${1:-all}" in
         turbo run dev --filter=nexus-visual
         ;;
     "ghost-studio")
-        echo "🎵 Iniciando Ghost Studio DAW..."
+        echo "🎵 Iniciando Ghost Studio (IA Musical)..."
         turbo run dev --filter=ghost-studio
+        ;;
+    "sonic-daw")
+        echo "🎛️ Iniciando Sonic DAW (DAW Profesional)..."
+        turbo run dev --filter=sonic-daw
         ;;
     "clone-station")
         echo "🎭 Iniciando Clone Station..."

@@ -17,6 +17,7 @@
     "dev:web-classic": "turbo run dev --filter=web-classic",
     "dev:nexus-visual": "turbo run dev --filter=nexus-visual",
     "dev:ghost-studio": "turbo run dev --filter=ghost-studio",
+    "dev:sonic-daw": "turbo run dev --filter=sonic-daw",
     "dev:clone-station": "turbo run dev --filter=clone-station",
     "dev:nova-post-pilot": "turbo run dev --filter=nova-post-pilot",
     "dev:sanctuary-social": "turbo run dev --filter=sanctuary-social"
