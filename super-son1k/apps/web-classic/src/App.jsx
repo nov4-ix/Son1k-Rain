@@ -12,6 +12,7 @@ import PixelConsole from './components/PixelConsole';
 import NovaPostGenerator from './components/NovaPostGenerator';
 import CloneStationCleaner from './components/CloneStationCleaner';
 import GhostStudioAnalyzer from './components/GhostStudioAnalyzer';
+import TheGenerator from './components/TheGenerator';
 import ThemeConfig from './components/ThemeConfig';
 
 // Hooks
@@ -28,7 +29,8 @@ const App = () => {
     { id: 'pixel', name: '🤖 Pixel', component: PixelConsole, icon: '🤖' },
     { id: 'nova', name: '📱 Nova', component: NovaPostGenerator, icon: '📱' },
     { id: 'clone', name: '🎤 Clone Station', component: CloneStationCleaner, icon: '🎤' },
-    { id: 'ghost', name: '🎵 Ghost Studio', component: GhostStudioAnalyzer, icon: '🎵' }
+    { id: 'ghost', name: '🎵 Ghost Studio', component: GhostStudioAnalyzer, icon: '🎵' },
+    { id: 'generator', name: '🎵 The Generator', component: TheGenerator, icon: '🎵' }
   ];
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component;
@@ -46,7 +48,7 @@ const App = () => {
           <p>Herramientas de desarrollo y creatividad con IA Qwen</p>
           <div className="header-stats">
             <span className="stat-item">
-              <span className="stat-number">4</span>
+              <span className="stat-number">5</span>
               <span className="stat-label">Herramientas</span>
             </span>
             <span className="stat-item">

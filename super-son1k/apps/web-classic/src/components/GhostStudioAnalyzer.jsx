@@ -90,6 +90,56 @@ const GhostStudioAnalyzer = () => {
     }
   };
 
+  // Generar cover con SunoAPI
+  const generateCover = async () => {
+    if (!audioMetadata.title) {
+      setError('Por favor completa el título del audio para generar cover');
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`${API_BASE}/suno/generator/generate-cover`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('authToken') || ''}`
+        },
+        body: JSON.stringify({
+          originalSong: audioMetadata.title,
+          coverStyle: audioMetadata.genre || 'pop',
+          duration: 30,
+          tempo: audioMetadata.bpm ? (audioMetadata.bpm > 120 ? 'fast' : audioMetadata.bpm < 80 ? 'slow' : 'medium') : 'medium',
+          key: audioMetadata.key || 'C',
+          language: 'en',
+          vocals: true,
+          instrumental: false,
+          preserveMelody: true,
+          styleIntensity: 0.7
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Error generando cover');
+      }
+
+      // Agregar resultado de cover a los resultados existentes
+      setResults(prev => ({
+        ...prev,
+        sunoCover: data.data
+      }));
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
   };
@@ -339,13 +389,23 @@ const GhostStudioAnalyzer = () => {
           </div>
         </div>
 
-        <button
-          onClick={analyzeMusic}
-          disabled={isLoading || (!audioMetadata.title && stems.length === 0)}
-          className="analyze-btn"
-        >
-          {isLoading ? '🔄 Analizando...' : '🎵 Analizar Música'}
-        </button>
+        <div className="action-buttons">
+          <button
+            onClick={analyzeMusic}
+            disabled={isLoading || (!audioMetadata.title && stems.length === 0)}
+            className="analyze-btn"
+          >
+            {isLoading ? '🔄 Analizando...' : '🎵 Analizar Música'}
+          </button>
+          
+          <button
+            onClick={generateCover}
+            disabled={isLoading || !audioMetadata.title}
+            className="cover-btn"
+          >
+            {isLoading ? '🔄 Generando Cover...' : '🎤 Generar Cover con SunoAPI'}
+          </button>
+        </div>
       </div>
 
       {error && (
@@ -480,6 +540,35 @@ const GhostStudioAnalyzer = () => {
             <div className="overall-assessment">
               <h4>📊 Evaluación General</h4>
               <p>{results.data.overall_assessment}</p>
+            </div>
+          )}
+
+          {results.sunoCover && (
+            <div className="suno-cover-section">
+              <h4>🎤 Cover Generado con SunoAPI</h4>
+              <div className="cover-result">
+                <div className="cover-info">
+                  <p><strong>Género:</strong> {results.sunoCover.cover_style}</p>
+                  <p><strong>Duración:</strong> {results.sunoCover.duration}s</p>
+                  <p><strong>Estado:</strong> {results.sunoCover.status}</p>
+                </div>
+                {results.sunoCover.audio_url && (
+                  <div className="cover-audio">
+                    <audio controls>
+                      <source src={results.sunoCover.audio_url} type="audio/mpeg" />
+                      Tu navegador no soporta el elemento de audio.
+                    </audio>
+                  </div>
+                )}
+                <div className="cover-actions">
+                  <button 
+                    onClick={() => copyToClipboard(results.sunoCover.generation_id)}
+                    className="copy-btn"
+                  >
+                    📋 Copiar ID
+                  </button>
+                </div>
+              </div>
             </div>
           )}
 

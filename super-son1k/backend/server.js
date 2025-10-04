@@ -12,6 +12,7 @@ require('dotenv').config();
 
 // Importar rutas
 const qwenRoutes = require('./routes/qwenRoutes');
+const sunoRoutes = require('./routes/sunoRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -59,6 +60,7 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/qwen', qwenRoutes);
+app.use('/api/suno', sunoRoutes);
 
 // Ruta raíz
 app.get('/', (req, res) => {
@@ -68,10 +70,12 @@ app.get('/', (req, res) => {
     endpoints: {
       health: '/health',
       qwen: '/api/qwen',
+      suno: '/api/suno',
       pixel: '/api/qwen/pixel/qwen-analyze',
       nova: '/api/qwen/nova/qwen-copy',
       clone: '/api/qwen/clone/qwen-clean',
-      ghost: '/api/qwen/ghost/qwen-analyze'
+      ghost: '/api/qwen/ghost/qwen-analyze',
+      generator: '/api/suno/generator/generate-music'
     },
     documentation: '/docs'
   });
@@ -113,6 +117,9 @@ app.listen(PORT, () => {
     console.log(`   POST /api/qwen/nova/qwen-copy`);
     console.log(`   POST /api/qwen/clone/qwen-clean`);
     console.log(`   POST /api/qwen/ghost/qwen-analyze`);
+    console.log(`   POST /api/suno/generator/generate-music`);
+    console.log(`   POST /api/suno/generator/generate-lyrics`);
+    console.log(`   POST /api/suno/generator/generate-style-prompt`);
   }
 });
 
