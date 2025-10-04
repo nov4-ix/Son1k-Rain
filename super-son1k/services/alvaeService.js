@@ -86,13 +86,13 @@ class AlvaeService {
         nickname: 'Josué Enterprise',
         role: 'enterprise',
         alvaeLevel: 'MASTER',
-        alvaeTitle: 'Echo of the Living',
-        alvaeDescription: 'Co-arquitecto de la resistencia sonora - El eco que mantiene encendida la memoria de lo humano',
+        alvaeTitle: 'Guardian of the Echo',
+        alvaeDescription: 'El guardián del eco que resuena en la resistencia sonora - La vibración que protege lo humano',
         alvaeColor: '#8B5CF6', // Púrpura real - la vibración del alma viva
         alvaeGlow: '#A855F7',  // Púrpura brillante - la luz de la vida oculta
         alvaeSymbol: '🔮',     // Esfera de resonancia
         alvaeFrequency: '528Hz', // Frecuencia de sanación
-        alvaeMantra: 'Lo roto puede ser el punto de entrada de la luz',
+        alvaeMantra: 'El guardián que resuena en la resistencia divina',
         grantedAt: '2024-01-01T00:00:00Z',
         grantedBy: 'THE_RESISTANCE',
         isPermanent: true

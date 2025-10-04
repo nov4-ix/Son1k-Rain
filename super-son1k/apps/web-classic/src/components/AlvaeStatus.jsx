@@ -332,8 +332,15 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
               <div className="stat-card">
                 <div className="stat-icon">👑</div>
                 <div className="stat-info">
-                  <div className="stat-value">2</div>
-                  <div className="stat-label">Architects</div>
+                  <div className="stat-value">1</div>
+                  <div className="stat-label">Architect</div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon">🛡️</div>
+                <div className="stat-info">
+                  <div className="stat-value">1</div>
+                  <div className="stat-label">Guardian</div>
                 </div>
               </div>
               <div className="stat-card">
