@@ -1,14 +1,16 @@
-# NEXUS Interface
+# NEXUS Interface - Enhanced Edition
 
-Interfaz visual "NEXUS" con efectos Matrix Rain, glitch TV y tipografía 8-bit.
+Interfaz visual "NEXUS" avanzada con efectos Matrix Rain mejorados, glitch TV dinámico, audio ambiental y controles de rendimiento.
 
-## Características
+## ✨ Características Principales
 
-- **Matrix Rain**: Lluvia de caracteres cian con transición de opacidad a los 5 segundos
-- **Aro Morado**: Círculo único con efectos glitch tipo TV vieja
-- **Barras Glitch**: Interferencia horizontal que se mueve lateralmente
-- **Tipografía 8-bit**: Fuente CoinDingDong para títulos y subtítulos
-- **Íconos Neon**: 6 íconos alrededor del aro con hover sutil
+- **Matrix Rain Avanzado**: Lluvia con caracteres katakana, efectos glitch por columna, partículas flotantes
+- **Aro Morado Dinámico**: Círculo con pulso animado y efectos glitch TV mejorados
+- **Barras Glitch**: Interferencia horizontal con movimiento lateral y parpadeo
+- **Tipografía 8-bit**: Fuente CoinDingDong con efectos de glow mejorados
+- **Íconos Interactivos**: 6 íconos con información detallada, estados y sonidos
+- **Audio Ambiental**: Efectos de sonido procedurales con Web Audio API
+- **Controles de Rendimiento**: Panel de configuración con monitoreo de FPS
 
 ## Paleta de Colores
 
@@ -37,11 +39,13 @@ npm run build
 ```
 src/
 ├── components/
-│   ├── MatrixRain.jsx    # Lluvia Matrix con transición de opacidad
-│   └── NexusScene.jsx    # Aro morado + íconos + textos
-├── App.jsx               # Componente principal
-├── main.jsx             # Punto de entrada
-└── index.css            # Estilos globales y efectos glitch
+│   ├── MatrixRain.jsx        # Lluvia Matrix avanzada con efectos glitch
+│   ├── NexusScene.jsx        # Aro morado + íconos interactivos + textos
+│   ├── AudioManager.jsx      # Gestor de audio ambiental y SFX
+│   └── PerformanceControls.jsx # Controles de calidad y rendimiento
+├── App.jsx                   # Componente principal con estado global
+├── main.jsx                 # Punto de entrada
+└── index.css                # Estilos globales y efectos avanzados
 ```
 
 ## Configuración Rápida
@@ -69,24 +73,83 @@ trailCalm={0.06}        /* Opacidad fondo: 0.04-0.08 */
 glyphAlphaCalm={0.65}   /* Opacidad glifos: 0.5-0.8 */
 ```
 
-## Efectos Implementados
+## 🎮 Controles y Atajos
 
-1. **Matrix Rain**: Caída desincronizada por columnas
-2. **Glitch TV**: Vibración, parpadeo y "borrado" por frames
-3. **Interferencia**: Barras horizontales con movimiento lateral
-4. **Transición**: Suavización de opacidades a los 5 segundos
-5. **Hover**: Glow cian sutil en íconos
+- **Ctrl+Shift+P**: Abrir/cerrar controles de rendimiento
+- **Click en íconos**: Mostrar información detallada y reproducir sonido
+- **Panel de rendimiento**: Ajustar calidad, audio y animaciones en tiempo real
 
-## Rendimiento
+## 🎵 Audio Features
 
-- Usa `requestAnimationFrame` para animaciones fluidas
-- Sin timers densos, solo acumuladores por columna
-- Canvas optimizado con fondo oscuro consistente
-- Efectos CSS con `mix-blend-mode` para interferencia
+- **Sonido Ambiental**: Loop procedural con osciladores y filtros
+- **SFX de Íconos**: Sonidos únicos por cada ícono (frecuencias musicales)
+- **Efectos Matrix**: Sonidos de glitch y interferencia
+- **Web Audio API**: Audio procedural sin archivos externos
 
-## Compatibilidad
+## 🎨 Efectos Visuales Avanzados
 
-- Navegadores modernos con soporte para CSS Grid/Flexbox
-- Canvas 2D API
-- CSS Custom Properties (variables)
-- Responsive design para móviles
+1. **Matrix Rain Mejorado**: 
+   - Caracteres katakana mezclados
+   - Efectos glitch por columna
+   - Partículas flotantes con física
+   - Efectos sparkle y eco
+
+2. **Glitch TV Dinámico**: 
+   - Vibración micro-translate
+   - Parpadeo irregular
+   - "Borrado" por frames
+   - Pulso animado del aro
+
+3. **Íconos Interactivos**: 
+   - Estados activos/inactivos
+   - Información detallada
+   - Colores personalizados por ícono
+   - Indicadores de estado
+
+4. **Interferencia**: 
+   - Barras horizontales animadas
+   - Movimiento lateral
+   - Parpadeo irregular
+   - Máscara radial para el centro
+
+## ⚡ Rendimiento y Optimización
+
+- **RequestAnimationFrame**: Animaciones fluidas sin timers densos
+- **Canvas Optimizado**: Fondo oscuro consistente y renderizado eficiente
+- **Controles de Calidad**: 3 niveles (Low/Medium/High) con ajustes automáticos
+- **Monitoreo FPS**: Indicador en tiempo real con códigos de color
+- **Efectos CSS**: `mix-blend-mode` y `backdrop-filter` para interferencia
+- **Web Audio API**: Audio procedural sin archivos externos
+
+## 🎯 Niveles de Calidad
+
+- **Low**: 70% densidad de columnas, 20 partículas, 30% intensidad glitch
+- **Medium**: 85% densidad de columnas, 40 partículas, 50% intensidad glitch  
+- **High**: 100% densidad de columnas, 60 partículas, 70% intensidad glitch
+
+## 🔧 Configuración Avanzada
+
+### Nuevos Parámetros MatrixRain
+```jsx
+<MatrixRain 
+  enableGlitch={true}        // Efectos glitch por columna
+  enableParticles={true}     // Partículas flotantes
+  quality="high"             // Nivel de calidad
+/>
+```
+
+### Audio Manager
+```jsx
+<AudioManager 
+  enableAmbient={true}       // Sonido ambiental
+  enableSFX={true}          // Efectos de sonido
+  volume={0.3}              // Volumen (0-1)
+/>
+```
+
+## 📱 Compatibilidad
+
+- **Navegadores**: Chrome 80+, Firefox 75+, Safari 13+, Edge 80+
+- **APIs Requeridas**: Canvas 2D, Web Audio API, CSS Custom Properties
+- **Responsive**: Adaptable a móviles y tablets
+- **Accesibilidad**: Controles de teclado y indicadores visuales
