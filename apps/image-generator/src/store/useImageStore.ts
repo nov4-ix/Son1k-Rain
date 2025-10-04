@@ -92,7 +92,7 @@ export const useImageStore = create<ImageState>((set, get) => ({
           height: 1024,
           fileSize: Math.floor(Math.random() * 2000000) + 500000,
           generationTime: 3000,
-          model: 'flux-dev',
+          model: 'dimensional-renderer',
           version: '1.0.0'
         }
       };

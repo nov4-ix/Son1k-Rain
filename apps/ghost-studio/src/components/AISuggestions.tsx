@@ -36,7 +36,7 @@ export const AISuggestions: React.FC = () => {
       <div>
         <h3 className="text-lg font-bold text-cyan mb-2">Sugerencias IA</h3>
         <p className="text-accent text-sm">
-          Recomendaciones inteligentes de Qwen para mejorar tu flujo de trabajo
+          Recomendaciones inteligentes de Oracle Mind para mejorar tu flujo de trabajo
         </p>
       </div>
 

@@ -38,7 +38,7 @@ export const TextToSpeech: React.FC = () => {
       <div>
         <h3 className="text-xl font-bold text-cyan mb-2">Texto a Voz</h3>
         <p className="text-accent text-sm">
-          Convierte texto en audio usando Bark con diferentes voces
+          Convierte texto en audio usando Quantum Speaker con diferentes voces
         </p>
       </div>
 

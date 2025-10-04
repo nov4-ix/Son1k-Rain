@@ -50,7 +50,7 @@ export const VoiceCloner: React.FC = () => {
       <div>
         <h3 className="text-xl font-bold text-cyan mb-2">Clonación de Voz</h3>
         <p className="text-accent text-sm">
-          Entrena un modelo de voz usando So-VITS con tu audio de muestra
+          Entrena un modelo de voz usando Phantom Voice con tu audio de muestra
         </p>
       </div>
 

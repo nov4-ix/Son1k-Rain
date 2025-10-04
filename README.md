@@ -68,15 +68,15 @@ super-son1k/
 
 ### 3. Ghost Studio - IA Musical
 **Puerto**: 3001  
-**Descripción**: Producción musical con IA (Suno API, So-VITS y Bark)
+**Descripción**: Producción musical con IA (Nexus Composer, Phantom Voice y Quantum Speaker)
 
 **Características**:
-- Generación de música con IA (Suno API)
-- Clonación de voz (So-VITS)
-- Texto a voz (Bark)
+- Generación de música con IA (Nexus Composer)
+- Clonación de voz (Phantom Voice)
+- Texto a voz (Quantum Speaker)
 - Historial de generaciones
 - Exportación a Sanctuary/Nova
-- Sugerencias IA (Qwen)
+- Sugerencias IA (Oracle Mind)
 - **Mini DAW integrado** para grabación de maquetas
 - **Looper profesional** para composición de canciones
 - **Procesamiento IA** de grabaciones en tiempo real

@@ -40,19 +40,19 @@ He creado una **extensión mini-DAW** integrada en Ghost Studio que permite a lo
 
 ### 🎵 **Tipos de Procesamiento IA:**
 
-#### **🎵 Suno Enhancement**
+#### **🎵 Nexus Enhancement**
 - **Función**: Mejora musical con IA
 - **Proceso**: Análisis → Generación → Optimización
 - **Resultado**: Música mejorada y extendida
 - **Duración**: +50% de duración original
 
-#### **🎭 Voice Cloning (So-VITS)**
+#### **🎭 Phantom Cloning**
 - **Función**: Clonación de voz
 - **Proceso**: Análisis → Entrenamiento → Clonación
 - **Resultado**: Voz clonada con características únicas
 - **Aplicación**: Ideal para voces grabadas
 
-#### **🔊 Text to Speech (Bark)**
+#### **🔊 Quantum Speech**
 - **Función**: Conversión de texto a voz
 - **Proceso**: Procesamiento → Síntesis → Optimización
 - **Resultado**: Voz sintética de alta calidad
@@ -104,17 +104,17 @@ He creado una **extensión mini-DAW** integrada en Ghost Studio que permite a lo
 
 #### **1. Grabación de Ideas**
 - Usuario graba una melodía vocal
-- Procesa con Suno para crear música completa
+- Procesa con Nexus Composer para crear música completa
 - Exporta el resultado final
 
 #### **2. Clonación de Voz**
 - Usuario graba su voz
-- Procesa con So-VITS para clonar
+- Procesa con Phantom Voice para clonar
 - Usa la voz clonada en otros proyectos
 
 #### **3. Texto a Voz**
 - Usuario graba una base musical
-- Procesa con Bark para agregar voz
+- Procesa con Quantum Speaker para agregar voz
 - Crea contenido completo
 
 #### **4. Mejora General**

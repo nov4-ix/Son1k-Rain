@@ -64,12 +64,12 @@ export const AIProcessor: React.FC<AIProcessorProps> = ({
     onProcessingComplete(processedTrack);
   };
 
-  const enhanceWithSuno = async () => {
+  const enhanceWithNexusComposer = async () => {
     setIsProcessing(true);
-    setProcessingStep('Generating music with Suno AI...');
+    setProcessingStep('Generating music with Nexus Composer...');
     setProcessingProgress(0);
 
-    // Simulate Suno processing
+    // Simulate Nexus Composer processing
     for (let i = 0; i <= 100; i += 10) {
       setProcessingProgress(i);
       await new Promise(resolve => setTimeout(resolve, 200));
@@ -77,8 +77,8 @@ export const AIProcessor: React.FC<AIProcessorProps> = ({
 
     const enhancedTrack: AudioTrack = {
       ...track,
-      name: `Suno Enhanced - ${track.name}`,
-      source: `suno_enhanced_${track.source}`,
+      name: `Nexus Enhanced - ${track.name}`,
+      source: `nexus_enhanced_${track.source}`,
       duration: track.duration * 1.5 // Simulate extended duration
     };
 
@@ -86,12 +86,12 @@ export const AIProcessor: React.FC<AIProcessorProps> = ({
     onProcessingComplete(enhancedTrack);
   };
 
-  const enhanceWithSoVITS = async () => {
+  const enhanceWithPhantomVoice = async () => {
     setIsProcessing(true);
-    setProcessingStep('Cloning voice with So-VITS...');
+    setProcessingStep('Cloning voice with Phantom Voice...');
     setProcessingProgress(0);
 
-    // Simulate So-VITS processing
+    // Simulate Phantom Voice processing
     for (let i = 0; i <= 100; i += 15) {
       setProcessingProgress(i);
       await new Promise(resolve => setTimeout(resolve, 150));
@@ -99,8 +99,8 @@ export const AIProcessor: React.FC<AIProcessorProps> = ({
 
     const clonedTrack: AudioTrack = {
       ...track,
-      name: `Voice Cloned - ${track.name}`,
-      source: `sovits_cloned_${track.source}`,
+      name: `Phantom Cloned - ${track.name}`,
+      source: `phantom_cloned_${track.source}`,
       duration: track.duration
     };
 
@@ -108,12 +108,12 @@ export const AIProcessor: React.FC<AIProcessorProps> = ({
     onProcessingComplete(clonedTrack);
   };
 
-  const enhanceWithBark = async () => {
+  const enhanceWithQuantumSpeaker = async () => {
     setIsProcessing(true);
-    setProcessingStep('Converting text to speech with Bark...');
+    setProcessingStep('Converting text to speech with Quantum Speaker...');
     setProcessingProgress(0);
 
-    // Simulate Bark processing
+    // Simulate Quantum Speaker processing
     for (let i = 0; i <= 100; i += 20) {
       setProcessingProgress(i);
       await new Promise(resolve => setTimeout(resolve, 100));
@@ -121,8 +121,8 @@ export const AIProcessor: React.FC<AIProcessorProps> = ({
 
     const ttsTrack: AudioTrack = {
       ...track,
-      name: `TTS Generated - ${track.name}`,
-      source: `bark_tts_${track.source}`,
+      name: `Quantum Generated - ${track.name}`,
+      source: `quantum_tts_${track.source}`,
       duration: track.duration * 0.8
     };
 
@@ -153,30 +153,30 @@ export const AIProcessor: React.FC<AIProcessorProps> = ({
           
           <div className="ai-buttons">
             <button
-              className="ai-btn suno-btn"
-              onClick={enhanceWithSuno}
+              className="ai-btn nexus-btn"
+              onClick={enhanceWithNexusComposer}
               disabled={isProcessing}
-              title="Enhance with Suno AI"
+              title="Enhance with Nexus Composer"
             >
-              🎵 Suno Enhancement
+              🎵 Nexus Enhancement
             </button>
             
             <button
-              className="ai-btn sovits-btn"
-              onClick={enhanceWithSoVITS}
+              className="ai-btn phantom-btn"
+              onClick={enhanceWithPhantomVoice}
               disabled={isProcessing}
-              title="Clone voice with So-VITS"
+              title="Clone voice with Phantom Voice"
             >
-              🎭 Voice Cloning
+              🎭 Phantom Cloning
             </button>
             
             <button
-              className="ai-btn bark-btn"
-              onClick={enhanceWithBark}
+              className="ai-btn quantum-btn"
+              onClick={enhanceWithQuantumSpeaker}
               disabled={isProcessing}
-              title="Convert to speech with Bark"
+              title="Convert to speech with Quantum Speaker"
             >
-              🔊 Text to Speech
+              🔊 Quantum Speech
             </button>
             
             <button
@@ -217,9 +217,9 @@ export const AIProcessor: React.FC<AIProcessorProps> = ({
           <h6 className="tips-title">💡 Tips:</h6>
           <ul className="tips-list">
             <li>Record clean audio for best AI results</li>
-            <li>Suno works best with musical content</li>
-            <li>So-VITS requires clear speech for cloning</li>
-            <li>Bark can generate speech from text prompts</li>
+            <li>Nexus Composer works best with musical content</li>
+            <li>Phantom Voice requires clear speech for cloning</li>
+            <li>Quantum Speaker can generate speech from text prompts</li>
           </ul>
         </div>
       </div>
