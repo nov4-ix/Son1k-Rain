@@ -1,5 +1,6 @@
 import MatrixRain from './components/MatrixRain'
 import NexusScene from './components/NexusScene'
+import ConfigPanel from './components/ConfigPanel'
 import './App.css'
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
       
       {/* Escena NEXUS centrada */}
       <NexusScene />
+      
+      {/* Panel de configuración */}
+      <ConfigPanel />
     </div>
   )
 }

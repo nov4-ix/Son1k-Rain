@@ -1,16 +1,29 @@
 import { useEffect, useRef } from 'react';
+import { useNexusConfig } from '../hooks/useNexusConfig';
 
 const MatrixRain = ({ 
-  color = "#00FFE7", 
-  fontSize = 18, 
-  stepMs = 34,
-  settleAfterMs = 5000,
-  transitionMs = 1000,
-  trailInitial = 0.12,
-  trailCalm = 0.06,
-  glyphAlphaInitial = 1.0,
-  glyphAlphaCalm = 0.65
+  color = null, 
+  fontSize = null, 
+  stepMs = null,
+  settleAfterMs = null,
+  transitionMs = null,
+  trailInitial = null,
+  trailCalm = null,
+  glyphAlphaInitial = null,
+  glyphAlphaCalm = null
 }) => {
+  const { config } = useNexusConfig();
+  
+  // Usar configuración por defecto si no se pasan props
+  const finalColor = color || config.matrixRain.color;
+  const finalFontSize = fontSize || config.matrixRain.fontSize;
+  const finalStepMs = stepMs || config.matrixRain.stepMs;
+  const finalSettleAfterMs = settleAfterMs || config.matrixRain.settleAfterMs;
+  const finalTransitionMs = transitionMs || config.matrixRain.transitionMs;
+  const finalTrailInitial = trailInitial || config.matrixRain.trailInitial;
+  const finalTrailCalm = trailCalm || config.matrixRain.trailCalm;
+  const finalGlyphAlphaInitial = glyphAlphaInitial || config.matrixRain.glyphAlphaInitial;
+  const finalGlyphAlphaCalm = glyphAlphaCalm || config.matrixRain.glyphAlphaCalm;
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const columnsRef = useRef([]);
@@ -19,6 +32,20 @@ const MatrixRain = ({
 
   // Caracteres Matrix
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?";
+  
+  // Mensajes ocultos (easter eggs)
+  const hiddenMessages = [
+    "THE MATRIX HAS YOU",
+    "WAKE UP NEO",
+    "FOLLOW THE WHITE RABBIT",
+    "THERE IS NO SPOON",
+    "RED PILL OR BLUE PILL",
+    "THE ONE IS COMING",
+    "AGENT SMITH APPROACHING",
+    "MORPHEUS WAITS",
+    "TRINITY IS NEAR",
+    "NEO IS THE ONE"
+  ];
   
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -34,12 +61,12 @@ const MatrixRain = ({
     window.addEventListener('resize', resizeCanvas);
 
     // Inicializar columnas
-    const columnCount = Math.floor(canvas.width / fontSize);
+    const columnCount = Math.floor(canvas.width / finalFontSize);
     columnsRef.current = Array.from({ length: columnCount }, (_, i) => ({
-      x: i * fontSize,
+      x: i * finalFontSize,
       y: Math.random() * canvas.height,
       speed: 0.5 + Math.random() * 1.5,
-      chars: Array.from({ length: Math.floor(canvas.height / fontSize) + 2 }, () => 
+      chars: Array.from({ length: Math.floor(canvas.height / finalFontSize) + 2 }, () => 
         chars[Math.floor(Math.random() * chars.length)]
       ),
       charIndex: 0,
@@ -51,18 +78,18 @@ const MatrixRain = ({
       const elapsed = now - startTimeRef.current;
       
       // Verificar si debemos hacer la transición
-      if (elapsed >= settleAfterMs && !isSettledRef.current) {
+      if (elapsed >= finalSettleAfterMs && !isSettledRef.current) {
         isSettledRef.current = true;
       }
 
       // Calcular opacidades actuales
-      let currentTrailAlpha = trailInitial;
-      let currentGlyphAlpha = glyphAlphaInitial;
+      let currentTrailAlpha = finalTrailInitial;
+      let currentGlyphAlpha = finalGlyphAlphaInitial;
 
       if (isSettledRef.current) {
-        const transitionProgress = Math.min((elapsed - settleAfterMs) / transitionMs, 1);
-        currentTrailAlpha = trailInitial + (trailCalm - trailInitial) * transitionProgress;
-        currentGlyphAlpha = glyphAlphaInitial + (glyphAlphaCalm - glyphAlphaInitial) * transitionProgress;
+        const transitionProgress = Math.min((elapsed - finalSettleAfterMs) / finalTransitionMs, 1);
+        currentTrailAlpha = finalTrailInitial + (finalTrailCalm - finalTrailInitial) * transitionProgress;
+        currentGlyphAlpha = finalGlyphAlphaInitial + (finalGlyphAlphaCalm - finalGlyphAlphaInitial) * transitionProgress;
       }
 
       // Limpiar canvas con fondo oscuro
@@ -71,31 +98,41 @@ const MatrixRain = ({
 
       // Dibujar cada columna
       columnsRef.current.forEach(column => {
-        if (now - column.lastUpdate >= stepMs) {
+        if (now - column.lastUpdate >= finalStepMs) {
           column.y += column.speed;
           column.charIndex = (column.charIndex + 1) % column.chars.length;
           column.lastUpdate = now;
 
           // Resetear columna si sale de pantalla
-          if (column.y > canvas.height + fontSize) {
-            column.y = -fontSize;
-            column.chars = Array.from({ length: Math.floor(canvas.height / fontSize) + 2 }, () => 
+          if (column.y > canvas.height + finalFontSize) {
+            column.y = -finalFontSize;
+            column.chars = Array.from({ length: Math.floor(canvas.height / finalFontSize) + 2 }, () => 
               chars[Math.floor(Math.random() * chars.length)]
             );
           }
         }
 
         // Dibujar caracteres de la columna
-        ctx.font = `${fontSize}px monospace`;
+        ctx.font = `${finalFontSize}px monospace`;
         ctx.textAlign = 'center';
         
         // Dibujar caracteres con opacidad variable
         for (let i = 0; i < column.chars.length; i++) {
-          const charY = column.y - (i * fontSize);
-          if (charY > -fontSize && charY < canvas.height + fontSize) {
+          const charY = column.y - (i * finalFontSize);
+          if (charY > -finalFontSize && charY < canvas.height + finalFontSize) {
             const alpha = Math.max(0, 1 - (i / column.chars.length));
-            ctx.fillStyle = `${color}${Math.floor(alpha * currentGlyphAlpha * 255).toString(16).padStart(2, '0')}`;
-            ctx.fillText(column.chars[(column.charIndex + i) % column.chars.length], column.x, charY);
+            
+            // Easter egg: mostrar mensaje oculto según configuración
+            if (Math.random() < config.animations.easterEggChance && i === 0) {
+              const message = hiddenMessages[Math.floor(Math.random() * hiddenMessages.length)];
+              ctx.fillStyle = `${finalColor}${Math.floor(alpha * currentGlyphAlpha * 255).toString(16).padStart(2, '0')}`;
+              ctx.font = `${finalFontSize * 0.8}px monospace`;
+              ctx.fillText(message, column.x, charY);
+              ctx.font = `${finalFontSize}px monospace`;
+            } else {
+              ctx.fillStyle = `${finalColor}${Math.floor(alpha * currentGlyphAlpha * 255).toString(16).padStart(2, '0')}`;
+              ctx.fillText(column.chars[(column.charIndex + i) % column.chars.length], column.x, charY);
+            }
           }
         }
       });
@@ -111,7 +148,7 @@ const MatrixRain = ({
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [color, fontSize, stepMs, settleAfterMs, transitionMs, trailInitial, trailCalm, glyphAlphaInitial, glyphAlphaCalm]);
+  }, [finalColor, finalFontSize, finalStepMs, finalSettleAfterMs, finalTransitionMs, finalTrailInitial, finalTrailCalm, finalGlyphAlphaInitial, finalGlyphAlphaCalm, config]);
 
   return (
     <canvas

@@ -1,0 +1,68 @@
+{
+  "colors": {
+    "background": "#0A0C10",
+    "cyan": "#00FFE7",
+    "magenta": "#B84DFF",
+    "dim": "#9AF7EE"
+  },
+  "matrixRain": {
+    "color": "#00FFE7",
+    "fontSize": 18,
+    "stepMs": 34,
+    "settleAfterMs": 5000,
+    "transitionMs": 1000,
+    "trailInitial": 0.12,
+    "trailCalm": 0.06,
+    "glyphAlphaInitial": 1.0,
+    "glyphAlphaCalm": 0.65
+  },
+  "ring": {
+    "size": 300,
+    "borderWidth": 2,
+    "glowIntensity": 20,
+    "haloPulseSpeed": 2,
+    "glitchShiftSpeed": 0.3,
+    "glitchBlinkSpeed": 2,
+    "glitchEraseSpeed": 1.5,
+    "glitchGhostSpeed": 8,
+    "fadeInSpeed": 2
+  },
+  "icons": {
+    "size": 40,
+    "fontSize": 24,
+    "hoverScale": 1.2,
+    "hoverRotation": 10,
+    "vibrateSpeed": 0.1,
+    "particleSize": 4,
+    "particleFloatSpeed": 1
+  },
+  "glitchLines": {
+    "opacity": 0.23,
+    "shiftSpeed": 0.8,
+    "flickerSpeed": 1.2,
+    "maskSize": 400
+  },
+  "typography": {
+    "titleFontSize": "clamp(36px, 7vw, 92px)",
+    "subtitleFontSize": "clamp(18px, 3vw, 32px)",
+    "titleShadow": "0 0 12px rgba(0, 255, 231, 0.8), 0 0 32px rgba(0, 255, 231, 0.47)",
+    "subtitleShadow": "0 0 8px rgba(0, 255, 231, 0.4)"
+  },
+  "animations": {
+    "microTextDelay": 5000,
+    "microTextDuration": 3000,
+    "glitchFlashInterval": 15000,
+    "glitchFlashDuration": 100,
+    "easterEggChance": 0.01
+  },
+  "audio": {
+    "activationFrequency": 200,
+    "activationDuration": 500,
+    "volume": 0.1
+  },
+  "performance": {
+    "useWillChange": true,
+    "useTransform3D": true,
+    "useBackfaceVisibility": true
+  }
+}
