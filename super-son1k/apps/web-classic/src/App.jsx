@@ -5,53 +5,86 @@
 
 import React, { useState } from 'react';
 import './App.css';
+import './styles/globals.css';
 
 // Componentes Qwen
 import PixelConsole from './components/PixelConsole';
 import NovaPostGenerator from './components/NovaPostGenerator';
 import CloneStationCleaner from './components/CloneStationCleaner';
 import GhostStudioAnalyzer from './components/GhostStudioAnalyzer';
+import ThemeConfig from './components/ThemeConfig';
+
+// Hooks
+import useTheme from './hooks/useTheme';
+import useAnimations from './hooks/useAnimations';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('pixel');
+  
+  const { theme } = useTheme();
+  const { createAnimatedRef, getAnimationClass } = useAnimations();
 
   const tabs = [
-    { id: 'pixel', name: '🤖 Pixel', component: PixelConsole },
-    { id: 'nova', name: '📱 Nova', component: NovaPostGenerator },
-    { id: 'clone', name: '🎤 Clone Station', component: CloneStationCleaner },
-    { id: 'ghost', name: '🎵 Ghost Studio', component: GhostStudioAnalyzer }
+    { id: 'pixel', name: '🤖 Pixel', component: PixelConsole, icon: '🤖' },
+    { id: 'nova', name: '📱 Nova', component: NovaPostGenerator, icon: '📱' },
+    { id: 'clone', name: '🎤 Clone Station', component: CloneStationCleaner, icon: '🎤' },
+    { id: 'ghost', name: '🎵 Ghost Studio', component: GhostStudioAnalyzer, icon: '🎵' }
   ];
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component;
 
   return (
     <div className="app">
-      <header className="app-header">
+      <ThemeConfig />
+      
+      <header 
+        className={`app-header ${getAnimationClass('app-header', 'slideInDown')}`}
+        ref={createAnimatedRef('slideInDown')}
+      >
         <div className="header-content">
           <h1>🚀 Super-Son1k</h1>
           <p>Herramientas de desarrollo y creatividad con IA Qwen</p>
+          <div className="header-stats">
+            <span className="stat-item">
+              <span className="stat-number">4</span>
+              <span className="stat-label">Herramientas</span>
+            </span>
+            <span className="stat-item">
+              <span className="stat-number">∞</span>
+              <span className="stat-label">Posibilidades</span>
+            </span>
+          </div>
         </div>
         
         <nav className="nav-tabs">
-          {tabs.map(tab => (
+          {tabs.map((tab, index) => (
             <button
               key={tab.id}
-              className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
+              className={`nav-tab ${activeTab === tab.id ? 'active' : ''} ${getAnimationClass(`nav-tab-${index}`, 'scaleIn')}`}
               onClick={() => setActiveTab(tab.id)}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {tab.name}
+              <span className="tab-icon">{tab.icon}</span>
+              <span className="tab-name">{tab.name}</span>
+              <div className="tab-glow"></div>
             </button>
           ))}
         </nav>
       </header>
 
-      <main className="app-main">
+      <main 
+        className={`app-main ${getAnimationClass('app-main', 'fadeInUp')}`}
+        ref={createAnimatedRef('fadeInUp')}
+      >
         <div className="main-content">
           {ActiveComponent && <ActiveComponent />}
         </div>
       </main>
 
-      <footer className="app-footer">
+      <footer 
+        className={`app-footer ${getAnimationClass('app-footer', 'fadeInUp')}`}
+        ref={createAnimatedRef('fadeInUp')}
+      >
         <div className="footer-content">
           <p>Super-Son1k v1.0.0 - Powered by Qwen AI</p>
           <div className="footer-links">
