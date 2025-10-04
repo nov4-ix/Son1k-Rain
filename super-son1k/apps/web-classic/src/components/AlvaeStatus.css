@@ -1,0 +1,749 @@
+/**
+ * ALVAE Status Styles - El símbolo más exclusivo
+ * Super-Son1k Web Classic
+ */
+
+/* Variables específicas de ALVAE */
+:root {
+  --alvae-gold: #FFD700;
+  --alvae-glow: #FFA500;
+  --alvae-purple: #8B5CF6;
+  --alvae-green: #10B981;
+  --alvae-bg: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.05));
+  --alvae-border: rgba(255, 215, 0, 0.3);
+  --alvae-shadow: 0 8px 32px rgba(255, 215, 0, 0.2);
+}
+
+/* Contenedor principal de ALVAE */
+.alvae-status {
+  position: relative;
+  min-height: 100vh;
+  background: var(--alvae-bg);
+  border: 1px solid var(--alvae-border);
+  border-radius: var(--radius-xl);
+  padding: 30px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.alvae-status::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Acceso restringido */
+.alvae-status-restricted {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--color-surfaceElevated);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+  margin: 20px 0;
+}
+
+.restricted-content h2 {
+  color: var(--color-text);
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.restricted-content p {
+  color: var(--color-textSecondary);
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+/* Header ALVAE */
+.alvae-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.alvae-header h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, var(--alvae-gold), var(--alvae-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.alvae-header p {
+  font-size: 1.2rem;
+  color: var(--color-textSecondary);
+  margin-bottom: 10px;
+}
+
+.alvae-subtitle {
+  font-size: 1rem;
+  color: var(--color-textMuted);
+  font-style: italic;
+}
+
+/* Estado de carga */
+.loading-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.loading-state p {
+  color: var(--color-textSecondary);
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+/* Estado actual ALVAE */
+.alvae-current-status {
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.alvae-member-card {
+  background: var(--color-surfaceElevated);
+  border: 2px solid var(--alvae-border);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--alvae-shadow);
+}
+
+.alvae-member-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.alvae-symbol-large {
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.alvae-symbol {
+  font-size: 4rem;
+  display: inline-block;
+  animation: alvaePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes alvaePulse {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  100% {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+}
+
+.alvae-member-info {
+  position: relative;
+  z-index: 2;
+}
+
+.alvae-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-text);
+  margin-bottom: 10px;
+}
+
+.alvae-description {
+  font-size: 1.1rem;
+  color: var(--color-textSecondary);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.alvae-level {
+  margin-bottom: 15px;
+}
+
+.level-badge {
+  padding: 8px 16px;
+  border-radius: var(--radius-lg);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: var(--alvae-bg);
+  border: 1px solid var(--alvae-border);
+  color: var(--alvae-gold);
+}
+
+.alvae-details {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: var(--color-textMuted);
+}
+
+/* Estado sin ALVAE */
+.alvae-non-member {
+  background: var(--color-surfaceElevated);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.alvae-placeholder {
+  margin-bottom: 20px;
+}
+
+.placeholder-symbol {
+  font-size: 4rem;
+  color: var(--color-textMuted);
+  opacity: 0.5;
+}
+
+.alvae-placeholder-info h3 {
+  font-size: 1.8rem;
+  color: var(--color-text);
+  margin-bottom: 10px;
+}
+
+.alvae-placeholder-info p {
+  font-size: 1.1rem;
+  color: var(--color-textSecondary);
+  margin-bottom: 20px;
+}
+
+.alvae-status-badge {
+  display: inline-block;
+}
+
+.status-text {
+  padding: 8px 16px;
+  border-radius: var(--radius-lg);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: var(--color-warning);
+  color: white;
+}
+
+/* Evaluación de elegibilidad */
+.alvae-evaluation {
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 30px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.alvae-evaluation h3 {
+  color: var(--color-text);
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.evaluation-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.score-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--alvae-bg);
+  border: 3px solid var(--alvae-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.score-circle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at center, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+}
+
+.score-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--alvae-gold);
+  position: relative;
+  z-index: 2;
+}
+
+.score-max {
+  font-size: 1rem;
+  color: var(--color-textSecondary);
+  position: relative;
+  z-index: 2;
+}
+
+.score-status {
+  text-align: center;
+}
+
+.status-badge {
+  padding: 12px 24px;
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-badge.eligible {
+  background: var(--color-success);
+  color: white;
+}
+
+.status-badge.not-eligible {
+  background: var(--color-warning);
+  color: white;
+}
+
+/* Criterios de evaluación */
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.criterion-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-borderLight);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all var(--animation-duration) var(--animation-easing);
+}
+
+.criterion-item.passed {
+  border-color: var(--color-success);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.criterion-item.pending {
+  border-color: var(--color-warning);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.criterion-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.criterion-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.criterion-icon {
+  font-size: 1.2rem;
+}
+
+.criterion-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-text);
+  flex: 1;
+}
+
+.criterion-score {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--color-textSecondary);
+}
+
+.criterion-message {
+  font-size: 0.9rem;
+  color: var(--color-textSecondary);
+  margin-bottom: 10px;
+}
+
+.criterion-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.detail-item {
+  padding: 4px 8px;
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--color-borderLight);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--color-textSecondary);
+}
+
+/* Botón de solicitud ALVAE */
+.alvae-request-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.request-alvae-btn {
+  padding: 15px 30px;
+  border: 2px solid var(--alvae-border);
+  border-radius: var(--radius-lg);
+  background: var(--alvae-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--animation-duration) var(--animation-easing);
+  font-size: 1.1rem;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.request-alvae-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.request-alvae-btn:hover::before {
+  left: 100%;
+}
+
+.request-alvae-btn:hover {
+  background: linear-gradient(135deg, var(--alvae-gold), var(--alvae-glow));
+  color: white;
+  border-color: var(--alvae-gold);
+  transform: translateY(-3px);
+  box-shadow: var(--alvae-shadow);
+}
+
+.request-alvae-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Mensaje de motivación */
+.alvae-motivation {
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 25px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.alvae-motivation.success {
+  border-color: var(--color-success);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.alvae-motivation.info {
+  border-color: var(--color-primary);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.alvae-motivation.warning {
+  border-color: var(--color-warning);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.alvae-motivation.motivation {
+  border-color: var(--alvae-border);
+  background: var(--alvae-bg);
+}
+
+.motivation-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.motivation-content {
+  flex: 1;
+}
+
+.motivation-content h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.motivation-content p {
+  font-size: 1rem;
+  color: var(--color-textSecondary);
+  margin-bottom: 8px;
+}
+
+.motivation-action {
+  font-size: 0.9rem;
+  color: var(--color-textMuted);
+  font-style: italic;
+}
+
+/* Recomendaciones */
+.alvae-recommendations {
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 25px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.alvae-recommendations h3 {
+  color: var(--color-text);
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.recommendations-list {
+  list-style: none;
+  padding: 0;
+}
+
+.recommendation-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-borderLight);
+}
+
+.recommendation-item:last-child {
+  border-bottom: none;
+}
+
+.recommendation-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.recommendation-text {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+/* Estadísticas globales */
+.alvae-global-stats {
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 25px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.alvae-global-stats h3 {
+  color: var(--color-text);
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-borderLight);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  text-align: center;
+  transition: all var(--animation-duration) var(--animation-easing);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--alvae-gold);
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--color-text);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--color-textSecondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Información adicional */
+.alvae-info {
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 25px;
+  position: relative;
+  z-index: 2;
+}
+
+.alvae-info h3 {
+  color: var(--color-text);
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+}
+
+.info-content p {
+  font-size: 1rem;
+  color: var(--color-textSecondary);
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.info-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-content li {
+  padding: 8px 0;
+  font-size: 1rem;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-content li strong {
+  color: var(--alvae-gold);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .alvae-header h2 {
+    font-size: 2rem;
+  }
+  
+  .evaluation-score {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .criteria-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .alvae-motivation {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+  
+  .alvae-details {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .alvae-status {
+    padding: 20px;
+    margin: 10px 0;
+  }
+  
+  .alvae-member-card,
+  .alvae-non-member {
+    padding: 30px 20px;
+  }
+  
+  .alvae-symbol {
+    font-size: 3rem;
+  }
+  
+  .alvae-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Theme-specific adjustments */
+.theme-cyberpunk .alvae-status {
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(139, 92, 246, 0.05));
+  border-color: rgba(30, 64, 175, 0.3);
+}
+
+.theme-cyberpunk .alvae-symbol {
+  color: #00FFE7;
+  text-shadow: 
+    0 0 10px #00FFE7,
+    0 0 20px #00FFE7,
+    0 0 30px #B84DFF;
+}
+
+.theme-minimal .alvae-status {
+  background: var(--color-surface);
+  border: 1px solid var(--color-borderLight);
+  box-shadow: none;
+}
+
+.theme-minimal .alvae-symbol {
+  color: var(--color-text);
+  text-shadow: none;
+  animation: none;
+}

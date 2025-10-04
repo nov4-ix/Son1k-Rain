@@ -16,6 +16,7 @@ const sunoRoutes = require('./routes/sunoRoutes');
 const metricsRoutes = require('./routes/metricsRoutes');
 const trackRoutes = require('./routes/trackRoutes');
 const authRoutes = require('./routes/authRoutes');
+const alvaeRoutes = require('./routes/alvaeRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -67,6 +68,7 @@ app.use('/api/suno', sunoRoutes);
 app.use('/api', metricsRoutes);
 app.use('/api', trackRoutes);
 app.use('/api', authRoutes);
+app.use('/api', alvaeRoutes);
 
 // Ruta raíz
 app.get('/', (req, res) => {

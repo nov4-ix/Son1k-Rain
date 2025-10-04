@@ -19,6 +19,7 @@ import AuthModal from './components/AuthModal';
 import UserProfile from './components/UserProfile';
 import NoSilenceLeague from './components/NoSilenceLeague';
 import SubscriptionPlans from './components/SubscriptionPlans';
+import AlvaeStatus from './components/AlvaeStatus';
 
 // Hooks
 import useTheme from './hooks/useTheme';
@@ -60,6 +61,7 @@ const App = () => {
     { id: 'ghost', name: '🎵 Ghost Studio', component: GhostStudioAnalyzer, icon: '🎵' },
     { id: 'generator', name: '🎵 The Generator', component: TheGenerator, icon: '🎵' },
     { id: 'profile', name: '👤 Perfil', component: UserProfile, icon: '👤' },
+    { id: 'alvae', name: '✨ ALVAE', component: AlvaeStatus, icon: '✨' },
     { id: 'league', name: '🔊 La Liga', component: NoSilenceLeague, icon: '🔊' },
     { id: 'plans', name: '💎 Planes', component: SubscriptionPlans, icon: '💎' }
   ];
