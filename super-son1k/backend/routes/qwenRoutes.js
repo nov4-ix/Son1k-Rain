@@ -6,6 +6,10 @@
 const express = require('express');
 const router = express.Router();
 const QwenClient = require('../../services/qwenClient');
+const { trackMetrics } = require('../middleware/metricsMiddleware');
+
+// Aplicar middleware de métricas a todas las rutas
+router.use(trackMetrics);
 
 // Inicializar cliente Qwen
 const qwenClient = new QwenClient({

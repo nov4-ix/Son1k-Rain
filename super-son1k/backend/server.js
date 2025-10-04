@@ -13,6 +13,7 @@ require('dotenv').config();
 // Importar rutas
 const qwenRoutes = require('./routes/qwenRoutes');
 const sunoRoutes = require('./routes/sunoRoutes');
+const metricsRoutes = require('./routes/metricsRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -61,6 +62,7 @@ app.get('/health', (req, res) => {
 // API routes
 app.use('/api/qwen', qwenRoutes);
 app.use('/api/suno', sunoRoutes);
+app.use('/api', metricsRoutes);
 
 // Ruta raíz
 app.get('/', (req, res) => {
@@ -71,11 +73,13 @@ app.get('/', (req, res) => {
       health: '/health',
       qwen: '/api/qwen',
       suno: '/api/suno',
+      metrics: '/api/metrics',
       pixel: '/api/qwen/pixel/qwen-analyze',
       nova: '/api/qwen/nova/qwen-copy',
       clone: '/api/qwen/clone/qwen-clean',
       ghost: '/api/qwen/ghost/qwen-analyze',
-      generator: '/api/suno/generator/generate-music'
+      generator: '/api/suno/generator/generate-music',
+      dashboard: '/api/metrics/dashboard'
     },
     documentation: '/docs'
   });
@@ -120,6 +124,9 @@ app.listen(PORT, () => {
     console.log(`   POST /api/suno/generator/generate-music`);
     console.log(`   POST /api/suno/generator/generate-lyrics`);
     console.log(`   POST /api/suno/generator/generate-style-prompt`);
+    console.log(`   GET  /api/metrics/dashboard`);
+    console.log(`   GET  /api/metrics/trends`);
+    console.log(`   GET  /api/metrics/alerts`);
   }
 });
 

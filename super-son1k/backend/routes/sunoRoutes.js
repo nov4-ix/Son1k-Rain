@@ -6,6 +6,10 @@
 const express = require('express');
 const router = express.Router();
 const SunoClient = require('../../services/sunoClient');
+const { trackMetrics } = require('../middleware/metricsMiddleware');
+
+// Aplicar middleware de métricas a todas las rutas
+router.use(trackMetrics);
 
 // Inicializar cliente Suno
 const sunoClient = new SunoClient({

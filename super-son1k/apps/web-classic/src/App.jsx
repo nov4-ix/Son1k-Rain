@@ -13,6 +13,7 @@ import NovaPostGenerator from './components/NovaPostGenerator';
 import CloneStationCleaner from './components/CloneStationCleaner';
 import GhostStudioAnalyzer from './components/GhostStudioAnalyzer';
 import TheGenerator from './components/TheGenerator';
+import MetricsDashboard from './components/MetricsDashboard';
 import ThemeConfig from './components/ThemeConfig';
 
 // Hooks
@@ -20,12 +21,13 @@ import useTheme from './hooks/useTheme';
 import useAnimations from './hooks/useAnimations';
 
 const App = () => {
-  const [activeTab, setActiveTab] = useState('pixel');
+  const [activeTab, setActiveTab] = useState('dashboard');
   
   const { theme } = useTheme();
   const { createAnimatedRef, getAnimationClass } = useAnimations();
 
   const tabs = [
+    { id: 'dashboard', name: '📊 Dashboard', component: MetricsDashboard, icon: '📊' },
     { id: 'pixel', name: '🤖 Pixel', component: PixelConsole, icon: '🤖' },
     { id: 'nova', name: '📱 Nova', component: NovaPostGenerator, icon: '📱' },
     { id: 'clone', name: '🎤 Clone Station', component: CloneStationCleaner, icon: '🎤' },
@@ -48,7 +50,7 @@ const App = () => {
           <p>Herramientas de desarrollo y creatividad con IA Qwen</p>
           <div className="header-stats">
             <span className="stat-item">
-              <span className="stat-number">5</span>
+              <span className="stat-number">6</span>
               <span className="stat-label">Herramientas</span>
             </span>
             <span className="stat-item">
