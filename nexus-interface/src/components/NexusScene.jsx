@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNexusConfig } from '../hooks/useNexusConfig';
+import { useGameScore } from '../hooks/useGameScore';
 
 const NexusScene = () => {
   const { config } = useNexusConfig();
+  const { incrementInteractions, incrementTime } = useGameScore();
   const [hoveredIcon, setHoveredIcon] = useState(null);
   const [alternateMode, setAlternateMode] = useState(false);
   const [showMicroText, setShowMicroText] = useState(false);
@@ -96,6 +98,15 @@ const NexusScene = () => {
     return () => clearInterval(interval);
   }, [config]);
 
+  // Timer para tiempo de juego
+  useEffect(() => {
+    const timer = setInterval(() => {
+      incrementTime(1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [incrementTime]);
+
   // Atajos de teclado
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -110,6 +121,7 @@ const NexusScene = () => {
         event.preventDefault();
         setGlitchFlash(true);
         setTimeout(() => setGlitchFlash(false), 100);
+        incrementInteractions();
       }
       
       // Escape para resetear modo alterno
@@ -120,11 +132,12 @@ const NexusScene = () => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, []);
+  }, [incrementInteractions]);
 
   const toggleAlternateMode = () => {
     setAlternateMode(!alternateMode);
     playActivationSound();
+    incrementInteractions();
   };
 
   return (
@@ -141,6 +154,7 @@ const NexusScene = () => {
                 onMouseEnter={() => {
                   setHoveredIcon(icon.id);
                   playHoverSound();
+                  incrementInteractions();
                 }}
                 onMouseLeave={() => setHoveredIcon(null)}
                 title={icon.label}

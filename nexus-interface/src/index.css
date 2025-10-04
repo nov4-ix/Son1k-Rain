@@ -774,6 +774,421 @@ body {
   margin-left: 10px;
 }
 
+/* Sistema de puntuación */
+.score-toggle {
+  position: fixed;
+  top: 20px;
+  right: 80px;
+  width: 80px;
+  height: 50px;
+  background: rgba(184, 77, 255, 0.1);
+  border: 1px solid var(--mag);
+  border-radius: 8px;
+  color: var(--mag);
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'CoinDingDong', monospace;
+}
+
+.score-toggle:hover {
+  background: rgba(184, 77, 255, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--mag);
+}
+
+.score-panel {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 300px;
+  max-height: 70vh;
+  background: rgba(10, 12, 16, 0.95);
+  border: 1px solid var(--mag);
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 10;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+}
+
+.score-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: var(--mag);
+}
+
+.score-header h3 {
+  font-family: 'CoinDingDong', monospace;
+  font-size: 18px;
+}
+
+.score-header button {
+  background: none;
+  border: none;
+  color: var(--mag);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.score-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(184, 77, 255, 0.2);
+}
+
+.stat-label {
+  color: var(--cyan);
+  font-size: 14px;
+}
+
+.stat-value {
+  color: var(--mag);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.score-details {
+  margin-bottom: 20px;
+}
+
+.score-details h4 {
+  color: var(--dim);
+  font-family: 'CoinDingDong', monospace;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 12px;
+  color: var(--cyan);
+}
+
+.achievements-section h4 {
+  color: var(--dim);
+  font-family: 'CoinDingDong', monospace;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background: rgba(0, 255, 231, 0.05);
+  border: 1px solid rgba(0, 255, 231, 0.2);
+  border-radius: 4px;
+}
+
+.achievement-icon {
+  font-size: 20px;
+}
+
+.achievement-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.achievement-title {
+  color: var(--cyan);
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.achievement-desc {
+  color: var(--dim);
+  font-size: 10px;
+}
+
+.achievement-points {
+  color: var(--mag);
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Notificación de logro */
+.achievement-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.achievement-popup {
+  background: rgba(10, 12, 16, 0.95);
+  border: 2px solid var(--mag);
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  backdrop-filter: blur(10px);
+  animation: achievementSlide 3s ease-in-out;
+}
+
+.achievement-icon-large {
+  font-size: 40px;
+}
+
+.achievement-text h4 {
+  color: var(--cyan);
+  font-family: 'CoinDingDong', monospace;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.achievement-text p {
+  color: var(--dim);
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.achievement-points-large {
+  color: var(--mag);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+@keyframes achievementSlide {
+  0% { 
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  20% { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80% { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+/* Mini-juego de hacking */
+.hack-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 100px;
+  height: 50px;
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid #00FF00;
+  border-radius: 8px;
+  color: #00FF00;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'CoinDingDong', monospace;
+}
+
+.hack-button:hover:not(:disabled) {
+  background: rgba(0, 255, 0, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00FF00;
+}
+
+.hack-button.disabled {
+  background: rgba(100, 100, 100, 0.1);
+  border-color: #666;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.hacking-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hacking-game {
+  background: rgba(10, 12, 16, 0.95);
+  border: 2px solid #00FF00;
+  border-radius: 12px;
+  padding: 30px;
+  width: 500px;
+  max-width: 90vw;
+  backdrop-filter: blur(10px);
+}
+
+.hacking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.hacking-header h3 {
+  color: #00FF00;
+  font-family: 'CoinDingDong', monospace;
+  font-size: 20px;
+}
+
+.hacking-timer {
+  color: #00FF00;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sequence-display {
+  margin-bottom: 20px;
+}
+
+.sequence-display h4 {
+  color: var(--cyan);
+  font-family: 'CoinDingDong', monospace;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.sequence-keys {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.sequence-key {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid #00FF00;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00FF00;
+  font-family: 'CoinDingDong', monospace;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.sequence-key.completed {
+  background: rgba(0, 255, 0, 0.3);
+  box-shadow: 0 0 10px #00FF00;
+}
+
+.sequence-key.current {
+  background: rgba(255, 255, 0, 0.2);
+  border-color: #FFFF00;
+  color: #FFFF00;
+  animation: pulse 1s infinite;
+}
+
+.sequence-key.pending {
+  background: rgba(100, 100, 100, 0.1);
+  border-color: #666;
+  color: #666;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 255, 0, 0.1);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00FF00, #00FFE7);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.game-status {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.game-status p {
+  color: var(--cyan);
+  font-size: 14px;
+}
+
+.success-message h4 {
+  color: #00FF00;
+  font-family: 'CoinDingDong', monospace;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.success-message p {
+  color: var(--cyan);
+  font-size: 14px;
+}
+
+.error-message h4 {
+  color: #FF0000;
+  font-family: 'CoinDingDong', monospace;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.error-message p {
+  color: #FF6666;
+  font-size: 14px;
+}
+
+.hacking-instructions {
+  text-align: center;
+}
+
+.hacking-instructions p {
+  color: var(--dim);
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
 /* Optimizaciones de rendimiento */
 .nexus-center,
 .ring,

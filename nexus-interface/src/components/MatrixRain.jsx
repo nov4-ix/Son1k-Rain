@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useNexusConfig } from '../hooks/useNexusConfig';
+import { useGameScore } from '../hooks/useGameScore';
 
 const MatrixRain = ({ 
   color = null, 
@@ -13,6 +14,7 @@ const MatrixRain = ({
   glyphAlphaCalm = null
 }) => {
   const { config } = useNexusConfig();
+  const { foundEasterEgg, incrementTime } = useGameScore();
   
   // Usar configuración por defecto si no se pasan props
   const finalColor = color || config.matrixRain.color;
@@ -139,6 +141,9 @@ const MatrixRain = ({
               ctx.font = `${finalFontSize * 0.8}px monospace`;
               ctx.fillText(message, column.x, charY);
               ctx.font = `${finalFontSize}px monospace`;
+              
+              // Registrar easter egg encontrado
+              foundEasterEgg(message);
             } else {
               ctx.fillStyle = `${finalColor}${Math.floor(alpha * currentGlyphAlpha * 255).toString(16).padStart(2, '0')}`;
               ctx.fillText(column.chars[(column.charIndex + i) % column.chars.length], column.x, charY);
