@@ -18,5 +18,12 @@ export { useTheme } from './hooks/useTheme';
 export { useAudio } from './hooks/useAudio';
 export { useGlitch } from './hooks/useGlitch';
 
+// Mobile Components - Componentes móviles del universo Son1kVerse
+export { MobileLayout } from './mobile/MobileLayout';
+export { TouchOptimizedButton } from './mobile/TouchOptimizedButton';
+export { MobileGhostStudio } from './mobile/MobileGhostStudio';
+export { MobileSonicDAW } from './mobile/MobileSonicDAW';
+export { MobileNexusVisual } from './mobile/MobileNexusVisual';
+
 // Styles
 import './styles.css';
