@@ -4,49 +4,55 @@ const NexusScene = ({ onIconClick, enableAnimations = true }) => {
   const [activeIcon, setActiveIcon] = useState(null);
   const [pulsePhase, setPulsePhase] = useState(0);
   
-  // Íconos expandidos con más información
+  // Íconos de módulos del Son1kVerse
   const icons = [
     { 
-      symbol: '⚡', 
-      label: 'Energy Core', 
-      description: 'Power Management System',
+      symbol: '🎵', 
+      label: 'Ghost Studio', 
+      description: 'Producción musical con Suno API',
       color: '#00FFE7',
-      status: 'online'
+      status: 'online',
+      url: '/ghost-studio'
     },
     { 
-      symbol: '🔒', 
-      label: 'Security Matrix', 
-      description: 'Access Control Protocol',
+      symbol: '🎭', 
+      label: 'Clone Station', 
+      description: 'Clonación de voz y datasets',
       color: '#B84DFF',
-      status: 'secure'
+      status: 'online',
+      url: '/clone-station'
     },
     { 
-      symbol: '🌐', 
-      label: 'Network Hub', 
-      description: 'Data Transmission Node',
+      symbol: '🚀', 
+      label: 'Nova Post Pilot', 
+      description: 'Automatización de redes sociales',
       color: '#9AF7EE',
-      status: 'connected'
+      status: 'online',
+      url: '/nova-post-pilot'
     },
     { 
-      symbol: '💾', 
-      label: 'Data Vault', 
-      description: 'Information Storage',
+      symbol: '🏛️', 
+      label: 'Sanctuary Social', 
+      description: 'Red social colaborativa',
       color: '#00FFE7',
-      status: 'synced'
+      status: 'online',
+      url: '/sanctuary-social'
     },
     { 
-      symbol: '🔑', 
-      label: 'Access Key', 
-      description: 'Authentication Token',
+      symbol: '🏠', 
+      label: 'Web Classic', 
+      description: 'Dashboard principal',
       color: '#B84DFF',
-      status: 'valid'
+      status: 'online',
+      url: '/web-classic'
     },
     { 
       symbol: '⚙️', 
       label: 'System Core', 
-      description: 'Main Processing Unit',
+      description: 'Configuración del sistema',
       color: '#9AF7EE',
-      status: 'operational'
+      status: 'operational',
+      url: '/settings'
     }
   ];
   
@@ -78,6 +84,19 @@ const NexusScene = ({ onIconClick, enableAnimations = true }) => {
   
   const handleIconClick = (icon, index) => {
     setActiveIcon(activeIcon === index ? null : index);
+    
+    // Navegación a módulos
+    if (icon.url) {
+      // En un entorno real, esto sería navegación con React Router
+      console.log(`Navegando a ${icon.label}: ${icon.url}`);
+      
+      // Simular navegación
+      if (icon.url.startsWith('/')) {
+        // Cambiar la URL del navegador
+        window.location.href = icon.url;
+      }
+    }
+    
     if (onIconClick) {
       onIconClick(icon, index);
     }
