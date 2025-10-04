@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+/* Fuente 8-bit CoinDingDong */
+@font-face {
+  font-family: 'CoinDingDong';
+  src: url('data:font/woff2;base64,') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Variables CSS - Paleta fija */
+:root {
+  --bg: #0A0C10;
+  --cyan: #00FFE7;
+  --mag: #B84DFF;
+  --dim: #9AF7EE;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', monospace;
+  background: var(--bg);
+  color: var(--cyan);
+  overflow: hidden;
+  height: 100vh;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+/* Canvas de la lluvia Matrix */
+.matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  mix-blend-mode: normal;
+  z-index: 1;
+}
+
+/* Centro de la interfaz NEXUS */
+.nexus-center {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 3;
+}
+
+/* Aro morado único con efectos glitch */
+.ring {
+  width: 300px;
+  height: 300px;
+  border: 2px solid var(--mag);
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 
+    0 0 20px var(--mag),
+    inset 0 0 20px rgba(184, 77, 255, 0.3);
+  filter: drop-shadow(0 0 15px var(--mag));
+}
+
+/* Animaciones glitch para el aro */
+@keyframes glitchShift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-1px, 1px); }
+  20% { transform: translate(1px, -1px); }
+  30% { transform: translate(-1px, -1px); }
+  40% { transform: translate(1px, 1px); }
+  50% { transform: translate(-1px, 0); }
+  60% { transform: translate(1px, 0); }
+  70% { transform: translate(0, -1px); }
+  80% { transform: translate(0, 1px); }
+  90% { transform: translate(-1px, 1px); }
+}
+
+@keyframes glitchBlink {
+  0%, 90%, 100% { opacity: 1; }
+  5% { opacity: 0.8; }
+  10% { opacity: 0.9; }
+  15% { opacity: 0.7; }
+  20% { opacity: 1; }
+  25% { opacity: 0.6; }
+  30% { opacity: 1; }
+  35% { opacity: 0.8; }
+  40% { opacity: 1; }
+  45% { opacity: 0.9; }
+  50% { opacity: 1; }
+  55% { opacity: 0.7; }
+  60% { opacity: 1; }
+  65% { opacity: 0.8; }
+  70% { opacity: 1; }
+  75% { opacity: 0.9; }
+  80% { opacity: 1; }
+  85% { opacity: 0.6; }
+}
+
+@keyframes glitchErase {
+  0%, 100% { 
+    border-width: 2px;
+    opacity: 1;
+  }
+  10% { 
+    border-width: 1px;
+    opacity: 0.8;
+  }
+  20% { 
+    border-width: 3px;
+    opacity: 0.9;
+  }
+  30% { 
+    border-width: 0px;
+    opacity: 0.6;
+  }
+  40% { 
+    border-width: 2px;
+    opacity: 1;
+  }
+  50% { 
+    border-width: 1px;
+    opacity: 0.7;
+  }
+  60% { 
+    border-width: 4px;
+    opacity: 0.8;
+  }
+  70% { 
+    border-width: 2px;
+    opacity: 1;
+  }
+  80% { 
+    border-width: 0px;
+    opacity: 0.5;
+  }
+  90% { 
+    border-width: 2px;
+    opacity: 1;
+  }
+}
+
+.ring {
+  animation: 
+    glitchShift 0.3s infinite steps(1),
+    glitchBlink 2s infinite,
+    glitchErase 1.5s infinite;
+}
+
+/* Tipografía 8-bit */
+.nexus-title {
+  font-family: 'CoinDingDong', monospace;
+  font-size: clamp(36px, 7vw, 92px);
+  color: var(--cyan);
+  text-shadow: 
+    0 0 12px rgba(0, 255, 231, 0.8),
+    0 0 32px rgba(0, 255, 231, 0.47);
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.nexus-sub {
+  font-family: 'CoinDingDong', monospace;
+  font-size: clamp(18px, 3vw, 32px);
+  color: var(--dim);
+  margin-top: 28px;
+  text-shadow: 0 0 8px rgba(0, 255, 231, 0.4);
+  letter-spacing: 1px;
+}
+
+/* Íconos alrededor del aro */
+.nexus-icons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.nexus-icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  color: var(--cyan);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+}
+
+.nexus-icon:hover {
+  color: var(--cyan);
+  text-shadow: 0 0 15px var(--cyan);
+  transform: scale(1.1);
+}
+
+/* Posiciones de los íconos (6 posiciones equidistantes) */
+.nexus-icon:nth-child(1) { top: -20px; left: 50%; transform: translateX(-50%); }
+.nexus-icon:nth-child(2) { top: 15%; right: -20px; transform: translateY(-50%); }
+.nexus-icon:nth-child(3) { bottom: 15%; right: -20px; transform: translateY(50%); }
+.nexus-icon:nth-child(4) { bottom: -20px; left: 50%; transform: translateX(-50%); }
+.nexus-icon:nth-child(5) { bottom: 15%; left: -20px; transform: translateY(50%); }
+.nexus-icon:nth-child(6) { top: 15%; left: -20px; transform: translateY(-50%); }
+
+/* Overlay de barras glitch horizontales */
+.glitch-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 231, 0.03) 2px,
+    rgba(0, 255, 231, 0.03) 4px
+  );
+  mix-blend-mode: screen;
+  opacity: 0.23;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Animaciones para las barras glitch */
+@keyframes stripesShift {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes stripesFlicker {
+  0%, 100% { opacity: 0.23; }
+  10% { opacity: 0.18; }
+  20% { opacity: 0.28; }
+  30% { opacity: 0.15; }
+  40% { opacity: 0.25; }
+  50% { opacity: 0.20; }
+  60% { opacity: 0.30; }
+  70% { opacity: 0.18; }
+  80% { opacity: 0.26; }
+  90% { opacity: 0.22; }
+}
+
+.glitch-lines {
+  animation: 
+    stripesShift 0.8s infinite,
+    stripesFlicker 1.2s infinite;
+}
+
+/* Máscara radial para limpiar el área del centro */
+.glitch-lines::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    transparent 0%,
+    transparent 60%,
+    rgba(10, 12, 16, 0.8) 80%,
+    rgba(10, 12, 16, 1) 100%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
