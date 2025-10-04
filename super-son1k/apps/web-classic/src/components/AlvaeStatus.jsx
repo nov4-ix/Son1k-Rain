@@ -18,6 +18,7 @@ import './AlvaeStatus.css';
 import AlvaeProgress from './AlvaeProgress';
 import AlvaeMissions from './AlvaeMissions';
 import AlvaeNotifications from './AlvaeNotifications';
+import AlvaeRankings from './AlvaeRankings';
 
 const AlvaeStatus = ({ user, onUpdateProfile }) => {
   const [alvaeInfo, setAlvaeInfo] = useState(null);
@@ -176,6 +177,13 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
         >
           <span className="tab-icon">🔔</span>
           <span className="tab-label">Notificaciones</span>
+        </button>
+        <button
+          className={`tab-button ${activeTab === 'rankings' ? 'active' : ''}`}
+          onClick={() => setActiveTab('rankings')}
+        >
+          <span className="tab-icon">🏆</span>
+          <span className="tab-label">Rankings</span>
         </button>
       </div>
 
@@ -477,6 +485,13 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
           {activeTab === 'notifications' && (
             <AlvaeNotifications 
               userStats={user} 
+              evaluation={evaluation} 
+            />
+          )}
+
+          {activeTab === 'rankings' && (
+            <AlvaeRankings 
+              user={user} 
               evaluation={evaluation} 
             />
           )}
