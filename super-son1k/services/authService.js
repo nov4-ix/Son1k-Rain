@@ -68,6 +68,32 @@ class AuthService {
           'custom_deployment'
         ]
       },
+      premium: {
+        name: 'Premium',
+        permissions: [
+          'generate_music',
+          'generate_lyrics',
+          'generate_covers',
+          'download_tracks',
+          'share_content',
+          'analytics_access',
+          'collaboration'
+        ],
+        limits: {
+          generationsPerDay: 50,
+          tracksPerDay: 25,
+          apiCallsPerHour: 500,
+          storageGB: 5
+        },
+        features: [
+          'enhanced_analytics',
+          'team_collaboration',
+          'priority_generation',
+          'custom_styles',
+          'enhanced_export',
+          'priority_queue'
+        ]
+      },
       pro: {
         name: 'Pro',
         permissions: [
@@ -96,32 +122,6 @@ class AuthService {
           'api_access',
           'priority_support',
           'advanced_export'
-        ]
-      },
-      premium: {
-        name: 'Premium',
-        permissions: [
-          'generate_music',
-          'generate_lyrics',
-          'generate_covers',
-          'download_tracks',
-          'share_content',
-          'analytics_access',
-          'collaboration'
-        ],
-        limits: {
-          generationsPerDay: 50,
-          tracksPerDay: 25,
-          apiCallsPerHour: 500,
-          storageGB: 5
-        },
-        features: [
-          'enhanced_analytics',
-          'team_collaboration',
-          'priority_generation',
-          'custom_styles',
-          'enhanced_export',
-          'priority_queue'
         ]
       },
       tester: {
@@ -209,7 +209,7 @@ class AuthService {
       }
     });
 
-    // 10 Testers Pro
+    // 10 Testers Pro (justo debajo de Enterprise)
     for (let i = 1; i <= 10; i++) {
       this.createUser({
         email: `pro.tester${i}@sonikvers3.com`,
