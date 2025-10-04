@@ -6,6 +6,7 @@ export { Modal } from './components/Modal';
 export { Player } from './components/Player';
 export { ProgressBar } from './components/ProgressBar';
 export { Tabs } from './components/Tabs';
+export { AdaptivePixelGrid } from './components/AdaptivePixelGrid';
 export { Calendar } from './components/Calendar';
 export { Feed } from './components/Feed';
 export { Notification } from './components/Notification';

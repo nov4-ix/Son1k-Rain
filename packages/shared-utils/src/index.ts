@@ -64,3 +64,18 @@ export {
   withErrorTracking,
   globalAnalyticsManager
 } from './analytics';
+
+// Adaptive learning utilities
+export { 
+  AdaptiveLearningSystem, 
+  adaptiveLearningSystem, 
+  useAdaptiveLearning, 
+  PixelLearningUtils,
+  type UserBehavior,
+  type PixelLearning,
+  type LearnedPattern,
+  type UserPreferences,
+  type ProAccountData,
+  type UsagePattern,
+  type AdaptiveResponse
+} from './adaptiveLearning';
