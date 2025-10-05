@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "name": "super-son1k",
+  "builds": [
+    {
+      "src": "apps/web-classic/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    },
+    {
+      "src": "apps/nexus-visual/nexus-interface/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/nexus",
+      "dest": "apps/nexus-visual/nexus-interface"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "apps/web-classic/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

@@ -1,0 +1,607 @@
+/**
+ * AlvaeRankings.css - Estilos para el Sistema de Rankings ALVAE
+ * Diseño épico para competencia de la Resistencia Sonora
+ */
+
+.alvae-rankings-container {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin: 1rem 0;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+}
+
+.rankings-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.rankings-header h3 {
+  color: var(--color-text);
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.rankings-header p {
+  color: var(--color-textSecondary);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Filtros */
+.rankings-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.category-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.category-filter:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--alvae-gold);
+}
+
+.category-filter.active {
+  background: linear-gradient(135deg, var(--alvae-gold), var(--alvae-glow));
+  border-color: var(--alvae-gold);
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.filter-icon {
+  font-size: 1.1rem;
+}
+
+.time-filters {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.time-filter {
+  padding: 0.6rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.time-filter:hover {
+  background: var(--color-surfaceElevated);
+  border-color: var(--alvae-gold);
+}
+
+.time-filter.active {
+  background: var(--alvae-gold);
+  border-color: var(--alvae-gold);
+  color: white;
+}
+
+/* Ranking del usuario actual */
+.user-rank-card {
+  background: linear-gradient(135deg, var(--alvae-gold), var(--alvae-glow));
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+  animation: userRankPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes userRankPulse {
+  0% {
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.5);
+    transform: scale(1.02);
+  }
+}
+
+.user-rank-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.user-rank-header h4 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.user-rank-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(10px);
+}
+
+.rank-icon {
+  font-size: 1.5rem;
+}
+
+.rank-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.user-rank-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(10px);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.alvae-level {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Lista de rankings */
+.rankings-list {
+  margin-bottom: 2rem;
+}
+
+.rankings-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rankings-list-header h4 {
+  color: var(--color-text);
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.rankings-stats {
+  color: var(--color-textSecondary);
+  font-size: 0.9rem;
+}
+
+.rankings-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.ranking-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px 150px 80px;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ranking-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.ranking-item.current-user {
+  border-color: var(--alvae-gold);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1));
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.ranking-item.top-three {
+  border-color: var(--alvae-gold);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 165, 0, 0.05));
+}
+
+.rank-position {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.rank-icon {
+  font-size: 1.8rem;
+  animation: rankIconFloat 3s ease-in-out infinite;
+}
+
+@keyframes rankIconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.rank-number {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--color-textSecondary);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-avatar {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--color-border);
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 0.8rem;
+  background: var(--alvae-gold);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.user-details {
+  flex: 1;
+}
+
+.user-nickname {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-text);
+  margin: 0 0 0.3rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.current-user-indicator {
+  background: var(--alvae-gold);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.user-level {
+  display: flex;
+  align-items: center;
+}
+
+.level-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.user-stats {
+  text-align: center;
+}
+
+.user-stats .stat-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-text);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.user-stats .stat-label {
+  font-size: 0.8rem;
+  color: var(--color-textSecondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.user-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.progress-bar {
+  height: 8px;
+  background: var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: progressShimmer 2s ease-in-out infinite;
+}
+
+@keyframes progressShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.progress-text {
+  font-size: 0.8rem;
+  color: var(--color-textSecondary);
+  text-align: center;
+  font-weight: 500;
+}
+
+.user-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.action-btn:hover {
+  background: var(--alvae-gold);
+  border-color: var(--alvae-gold);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Estadísticas globales */
+.rankings-global-stats {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--color-surface), rgba(107, 114, 128, 0.05));
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  animation: statIconFloat 3s ease-in-out infinite;
+}
+
+@keyframes statIconFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-info .stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--alvae-gold);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-info .stat-label {
+  font-size: 0.9rem;
+  color: var(--color-textSecondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* Loading state */
+.rankings-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: var(--color-textSecondary);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--color-border);
+  border-top: 4px solid var(--alvae-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .alvae-rankings-container {
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .category-filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .category-filter {
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
+  }
+  
+  .time-filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .time-filter {
+    width: 100%;
+    max-width: 150px;
+    text-align: center;
+  }
+  
+  .user-rank-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .ranking-item {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    text-align: center;
+  }
+  
+  .user-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .user-actions {
+    justify-content: center;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -1,0 +1,883 @@
+/**
+ * No Silence League Styles - La Liga del No Silencio
+ * Super-Son1k Web Classic
+ */
+
+/* Variables específicas de La Liga */
+:root {
+  --alvae-gold: #FFD700;
+  --alvae-glow: #FFA500;
+  --league-bg: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.05));
+  --league-border: rgba(255, 215, 0, 0.3);
+  --league-shadow: 0 8px 32px rgba(255, 215, 0, 0.2);
+}
+
+/* Símbolo ALVAE dorado */
+.alvae-symbol {
+  color: var(--alvae-gold);
+  text-shadow: 
+    0 0 10px var(--alvae-gold),
+    0 0 20px var(--alvae-gold),
+    0 0 30px var(--alvae-glow);
+  font-size: 1.2em;
+  font-weight: bold;
+  animation: alvaePulse 2s ease-in-out infinite alternate;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+@keyframes alvaePulse {
+  0% {
+    text-shadow: 
+      0 0 10px var(--alvae-gold),
+      0 0 20px var(--alvae-gold),
+      0 0 30px var(--alvae-glow);
+    transform: scale(1);
+  }
+  100% {
+    text-shadow: 
+      0 0 15px var(--alvae-gold),
+      0 0 25px var(--alvae-gold),
+      0 0 35px var(--alvae-glow);
+    transform: scale(1.05);
+  }
+}
+
+/* Contenedor principal de La Liga */
+.no-silence-league {
+  position: relative;
+  min-height: 100vh;
+  background: var(--league-bg);
+  border: 1px solid var(--league-border);
+  border-radius: var(--radius-xl);
+  padding: 30px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.no-silence-league::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Acceso restringido */
+.no-silence-league-restricted {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--color-surfaceElevated);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+  margin: 20px 0;
+}
+
+.restricted-content h2 {
+  color: var(--color-text);
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.restricted-content p {
+  color: var(--color-textSecondary);
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.upgrade-prompt {
+  background: var(--league-bg);
+  border: 1px solid var(--league-border);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  margin-top: 30px;
+}
+
+.upgrade-prompt h3 {
+  color: var(--alvae-gold);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.upgrade-prompt ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.upgrade-prompt li {
+  padding: 8px 0;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+/* Header de La Liga */
+.league-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.league-title h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, var(--alvae-gold), var(--alvae-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.league-title p {
+  font-size: 1.2rem;
+  color: var(--color-textSecondary);
+  margin-bottom: 30px;
+}
+
+.league-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--league-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  text-align: center;
+  transition: all var(--animation-duration) var(--animation-easing);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.stat-card:hover::before {
+  left: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--league-shadow);
+  border-color: var(--alvae-gold);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--alvae-gold);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-text);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--color-textSecondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Tabs de navegación */
+.league-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--animation-duration) var(--animation-easing);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.tab-btn:hover {
+  background: var(--color-borderLight);
+  border-color: var(--color-textMuted);
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--alvae-gold), var(--alvae-glow));
+  color: white;
+  border-color: var(--alvae-gold);
+  box-shadow: var(--league-shadow);
+}
+
+.tab-btn.active:hover {
+  background: linear-gradient(135deg, var(--alvae-glow), var(--alvae-gold));
+  transform: translateY(-2px);
+}
+
+/* Contenido de las tabs */
+.league-content {
+  position: relative;
+  z-index: 2;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.loading-state p {
+  color: var(--color-textSecondary);
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+/* Tab: Miembros */
+.members-tab h3 {
+  color: var(--color-text);
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.member-card {
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all var(--animation-duration) var(--animation-easing);
+  position: relative;
+  overflow: hidden;
+}
+
+.member-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--alvae-gold), var(--alvae-glow));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.member-card:hover::before {
+  opacity: 1;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--league-shadow);
+  border-color: var(--league-border);
+}
+
+.member-avatar {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+}
+
+.avatar-icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-surface);
+}
+
+.member-name {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.member-name .nickname {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+.member-role {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.role-badge {
+  padding: 4px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.member-rank {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.rank-badge {
+  background: var(--league-bg);
+  border: 1px solid var(--league-border);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: var(--alvae-gold);
+  font-weight: 500;
+}
+
+.member-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--color-textSecondary);
+}
+
+.member-stats .stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Tab: Logros */
+.achievements-tab h3 {
+  color: var(--color-text);
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.achievement-card {
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all var(--animation-duration) var(--animation-easing);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.achievement-card.unlocked {
+  border-color: var(--league-border);
+  background: var(--league-bg);
+}
+
+.achievement-card.locked {
+  opacity: 0.6;
+  filter: grayscale(50%);
+}
+
+.achievement-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--league-shadow);
+}
+
+.achievement-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+}
+
+.achievement-card.unlocked .achievement-icon {
+  background: var(--league-bg);
+  border: 1px solid var(--league-border);
+}
+
+.achievement-info {
+  flex: 1;
+}
+
+.achievement-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-text);
+  margin-bottom: 5px;
+}
+
+.achievement-description {
+  font-size: 0.9rem;
+  color: var(--color-textSecondary);
+  margin-bottom: 10px;
+}
+
+.achievement-rarity {
+  margin-top: 10px;
+}
+
+.rarity-badge {
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.achievement-status {
+  flex-shrink: 0;
+}
+
+.unlocked-icon {
+  color: var(--color-success);
+  font-size: 1.5rem;
+}
+
+.locked-icon {
+  color: var(--color-textMuted);
+  font-size: 1.5rem;
+}
+
+/* Tab: Eventos */
+.events-tab h3 {
+  color: var(--color-text);
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.event-card {
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all var(--animation-duration) var(--animation-easing);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--alvae-gold), var(--alvae-glow));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.event-card:hover::before {
+  opacity: 1;
+}
+
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--league-shadow);
+  border-color: var(--league-border);
+}
+
+.event-card.completed {
+  border-color: var(--color-success);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.event-card.upcoming {
+  border-color: var(--color-warning);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.event-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+}
+
+.event-info {
+  flex: 1;
+}
+
+.event-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--color-text);
+  margin-bottom: 5px;
+}
+
+.event-description {
+  font-size: 0.9rem;
+  color: var(--color-textSecondary);
+  margin-bottom: 10px;
+}
+
+.event-date {
+  font-size: 0.8rem;
+  color: var(--color-textMuted);
+}
+
+.event-status {
+  flex-shrink: 0;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-badge.completed {
+  background: var(--color-success);
+  color: white;
+}
+
+.status-badge.upcoming {
+  background: var(--color-warning);
+  color: white;
+}
+
+.status-badge.ongoing {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Tab: Rankings */
+.rankings-tab h3 {
+  color: var(--color-text);
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.rankings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ranking-item {
+  background: var(--color-surfaceElevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all var(--animation-duration) var(--animation-easing);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ranking-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--alvae-gold), var(--alvae-glow));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ranking-item:hover::before {
+  opacity: 1;
+}
+
+.ranking-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--league-shadow);
+  border-color: var(--league-border);
+}
+
+.ranking-item:nth-child(1) {
+  border-color: var(--alvae-gold);
+  background: var(--league-bg);
+}
+
+.ranking-item:nth-child(1)::before {
+  opacity: 1;
+}
+
+.ranking-position {
+  flex-shrink: 0;
+}
+
+.position-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--alvae-gold);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.ranking-member {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.member-avatar-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.member-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.member-details .member-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+.member-details .member-role {
+  font-size: 0.8rem;
+  color: var(--color-textSecondary);
+}
+
+.ranking-stats {
+  display: flex;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-text);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--color-textSecondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Footer de La Liga */
+.league-footer {
+  margin-top: 60px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.league-motto {
+  margin-bottom: 40px;
+}
+
+.league-motto h3 {
+  font-size: 1.8rem;
+  color: var(--alvae-gold);
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.league-motto p {
+  font-size: 1.1rem;
+  color: var(--color-textSecondary);
+  font-style: italic;
+}
+
+.league-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.league-action-btn {
+  padding: 12px 24px;
+  border: 1px solid var(--league-border);
+  border-radius: var(--radius-lg);
+  background: var(--league-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--animation-duration) var(--animation-easing);
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.league-action-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.league-action-btn:hover::before {
+  left: 100%;
+}
+
+.league-action-btn:hover {
+  background: linear-gradient(135deg, var(--alvae-gold), var(--alvae-glow));
+  color: white;
+  border-color: var(--alvae-gold);
+  transform: translateY(-3px);
+  box-shadow: var(--league-shadow);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .league-title h1 {
+    font-size: 2rem;
+  }
+  
+  .league-stats {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+  
+  .members-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .achievement-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .event-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .ranking-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .ranking-member {
+    justify-content: center;
+  }
+  
+  .ranking-stats {
+    justify-content: center;
+  }
+  
+  .league-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Theme-specific adjustments */
+.theme-cyberpunk .no-silence-league {
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(139, 92, 246, 0.05));
+  border-color: rgba(30, 64, 175, 0.3);
+}
+
+.theme-cyberpunk .alvae-symbol {
+  color: #00FFE7;
+  text-shadow: 
+    0 0 10px #00FFE7,
+    0 0 20px #00FFE7,
+    0 0 30px #B84DFF;
+}
+
+.theme-minimal .no-silence-league {
+  background: var(--color-surface);
+  border: 1px solid var(--color-borderLight);
+  box-shadow: none;
+}
+
+.theme-minimal .alvae-symbol {
+  color: var(--color-text);
+  text-shadow: none;
+  animation: none;
+}
