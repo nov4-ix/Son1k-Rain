@@ -1,14 +1,6 @@
 /**
- * ALVAE Status - El emblema espiritual de la Resistencia Sonora
- * Super-Son1k Web Classic
- * 
- * ALVAE = La Vibración del Alma Viva
- * A = Anima (el alma, la chispa vital que desafía la máquina)
- * LVA = Lumen Vitae Arcanum (la luz de la vida oculta)
- * E = Echo (el retorno, el eco que da sentido a la creación)
- * 
- * "La perfección no sostiene universos; la vibración imperfecta sí.
- * Lo roto puede ser el punto de entrada de la luz."
+ * AlvaeStatus - Sistema de Status ALVAE
+ * Muestra el estado del usuario en el sistema ALVAE
  */
 
 import React, { useState, useEffect } from 'react';
@@ -27,92 +19,100 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
   const [activeTab, setActiveTab] = useState('status');
   const [isLoading, setIsLoading] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
-  
+
   const { theme } = useTheme();
-  const { pulse, glow, createParticles } = useAnimations();
+  const { animations } = useAnimations();
 
-  const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
-
+  // Cargar información ALVAE
   useEffect(() => {
-    if (user) {
-      loadAlvaeStatus();
-    }
+    const loadAlvaeInfo = async () => {
+      if (!user) return;
+
+      try {
+        setIsLoading(true);
+        
+        // Simular carga de datos ALVAE
+        const mockAlvaeInfo = {
+          hasAlvae: user.role === 'admin' || user.role === 'enterprise' || user.role === 'tester',
+          alvaeLevel: user.role === 'admin' ? 'ARCHITECT' : user.role === 'enterprise' ? 'GUARDIAN' : 'DIVINE_WARRIOR',
+          alvaeTitle: user.role === 'admin' ? 'Architect of the Resistance' : user.role === 'enterprise' ? 'Guardian of the Echo' : 'Echo Warrior',
+          alvaeDescription: 'El emblema espiritual de la Resistencia Sonora',
+          alvaeColor: '#FFD700',
+          alvaeGlow: '#FFA500',
+          alvaeSymbol: '🔮',
+          alvaeFrequency: '432Hz',
+          alvaeMantra: 'La vibración del alma viva',
+          grantedAt: '2024-01-01T00:00:00Z',
+          grantedBy: 'THE_RESISTANCE',
+          isPermanent: true
+        };
+
+        setAlvaeInfo(mockAlvaeInfo);
+
+        // Simular evaluación
+        const mockEvaluation = {
+          score: user.role === 'admin' ? 200 : user.role === 'enterprise' ? 180 : 150,
+          maxScore: 200,
+          eligible: user.role === 'admin' || user.role === 'enterprise' || user.role === 'tester',
+          criteria: {
+            anima: { score: 50, weight: 50, passed: true, message: 'Miembro de la Divina Liga' },
+            lumenVitae: { score: 45, weight: 50, passed: false, message: 'Contribuciones a la comunidad' },
+            echo: { score: 40, weight: 50, passed: false, message: 'Actividad en la plataforma' },
+            vibration: { score: 35, weight: 50, passed: false, message: 'Impacto en la comunidad' },
+            divineResistance: { score: 30, weight: 50, passed: false, message: 'Criterios místicos' }
+          }
+        };
+
+        setEvaluation(mockEvaluation);
+
+        // Simular motivación
+        const mockMotivation = {
+          type: 'info',
+          message: 'Continúa tu camino hacia ALVAE',
+          action: 'Cada paso cuenta en la Resistencia Sonora'
+        };
+
+        setMotivation(mockMotivation);
+
+      } catch (error) {
+        console.error('Error loading ALVAE info:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadAlvaeInfo();
   }, [user]);
 
-  const loadAlvaeStatus = async () => {
-    setIsLoading(true);
-    try {
-      const token = localStorage.getItem('authToken');
-      
-      // Verificar si tiene ALVAE
-      const alvaeResponse = await fetch(`${API_BASE}/alvae/status`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (alvaeResponse.ok) {
-        const alvaeData = await alvaeResponse.json();
-        setAlvaeInfo(alvaeData.data.alvaeInfo);
-      }
-
-      // Evaluar elegibilidad
-      const evalResponse = await fetch(`${API_BASE}/alvae/evaluate`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (evalResponse.ok) {
-        const evalData = await evalResponse.json();
-        setEvaluation(evalData.data.evaluation);
-        setMotivation(evalData.data.motivation);
-      }
-
-    } catch (error) {
-      console.error('Error loading ALVAE status:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const handleRequestAlvae = async () => {
-    if (!evaluation?.eligible) return;
+    if (!user) return;
 
-    setIsLoading(true);
     try {
-      const token = localStorage.getItem('authToken');
+      setIsLoading(true);
       
-      const response = await fetch(`${API_BASE}/alvae/request`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          reason: 'User meets all ALVAE criteria',
-          evaluation: evaluation
-        })
+      // Simular solicitud ALVAE
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setMotivation({
+        type: 'success',
+        message: 'Solicitud enviada a la Resistencia Sonora',
+        action: 'Tu solicitud será evaluada por los Guardianes'
       });
-
-      if (response.ok) {
-        const data = await response.json();
-        setAlvaeInfo(data.data.alvaeInfo);
-        pulse('alvae-success');
-        createParticles('alvae-particles', 30);
-      }
 
     } catch (error) {
       console.error('Error requesting ALVAE:', error);
+      setMotivation({
+        type: 'error',
+        message: 'Error al enviar solicitud',
+        action: 'Intenta nuevamente más tarde'
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleMissionComplete = (mission) => {
-    // Lógica para completar misión
     console.log('Misión completada:', mission);
-    // Aquí podrías actualizar el estado del usuario o enviar una notificación
     setMotivation({
       type: 'success',
       message: `¡Misión completada! +${mission.reward} puntos`,
@@ -122,10 +122,13 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
 
   if (!user) {
     return (
-      <div className="alvae-status-restricted">
-        <div className="restricted-content">
-          <h2>🔒 Acceso Restringido</h2>
-          <p>Inicia sesión para ver tu estado ALVAE</p>
+      <div className="alvae-status">
+        <div className="alvae-header">
+          <h2>🔮 ALVAE Status</h2>
+          <p>El emblema espiritual de la Resistencia Sonora</p>
+        </div>
+        <div className="alvae-restricted">
+          <p>Inicia sesión para acceder al sistema ALVAE</p>
         </div>
       </div>
     );
@@ -133,8 +136,15 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
 
   return (
     <div className="alvae-status">
-      <div className="particles-container" id="alvae-particles"></div>
-      
+      {/* Partículas de fondo */}
+      <div className="particles-container">
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+      </div>
+
       {/* Header ALVAE */}
       <div className="alvae-header">
         <h2>🔮 ALVAE Status</h2>
@@ -195,277 +205,149 @@ const AlvaeStatus = ({ user, onUpdateProfile }) => {
       ) : (
         <div className="alvae-content">
           {activeTab === 'status' && (
-        <>
-          {/* Status actual */}
-          <div className="alvae-current-status">
-            {alvaeInfo ? (
-              <div className="alvae-member-card">
-                <div className="alvae-symbol-large">
-                  <span 
-                    className="alvae-symbol"
-                    style={{ 
-                      color: alvaeInfo.alvaeColor,
-                      textShadow: `0 0 20px ${alvaeInfo.alvaeGlow}`
-                    }}
-                  >
-                    {alvaeInfo.alvaeSymbol}
-                  </span>
-                </div>
-                <div className="alvae-member-info">
-                  <h3 className="alvae-title">{alvaeInfo.alvaeTitle}</h3>
-                  <p className="alvae-description">{alvaeInfo.alvaeDescription}</p>
-                  <div className="alvae-level">
-                    <span className="level-badge">{alvaeInfo.alvaeLevel}</span>
-                  </div>
-                  {alvaeInfo.alvaeFrequency && (
-                    <div className="alvae-frequency">
-                      <span className="frequency-label">Frecuencia:</span>
-                      <span className="frequency-value">{alvaeInfo.alvaeFrequency}</span>
+            <div className="status-content">
+              <div className="alvae-current-status">
+                {alvaeInfo ? (
+                  <div className="alvae-member-card">
+                    <div className="alvae-symbol-large">
+                      <span 
+                        className="alvae-symbol"
+                        style={{ 
+                          color: alvaeInfo.alvaeColor,
+                          textShadow: `0 0 20px ${alvaeInfo.alvaeGlow}`
+                        }}
+                      >
+                        {alvaeInfo.alvaeSymbol}
+                      </span>
                     </div>
-                  )}
-                  {alvaeInfo.alvaeMantra && (
-                    <div className="alvae-mantra-personal">
-                      <span className="mantra-text">"{alvaeInfo.alvaeMantra}"</span>
-                    </div>
-                  )}
-                  <div className="alvae-details">
-                    <span>Otorgado: {new Date(alvaeInfo.grantedAt).toLocaleDateString()}</span>
-                    <span>Por: {alvaeInfo.grantedBy}</span>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="alvae-non-member">
-                <div className="alvae-placeholder">
-                  <span className="placeholder-symbol">❓</span>
-                </div>
-                <div className="alvae-placeholder-info">
-                  <h3>Sin ALVAE</h3>
-                  <p>Tu vibración del alma viva te espera</p>
-                  <div className="alvae-status-badge">
-                    <span className="status-text">EN BÚSQUEDA</span>
-                  </div>
-                  <div className="alvae-search-mantra">
-                    "El eco que da sentido a la creación te llama"
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Evaluación de elegibilidad */}
-          {evaluation && (
-            <div className="alvae-evaluation">
-              <h3>🔮 Evaluación de la Vibración del Alma</h3>
-              <div className="evaluation-score">
-                <div className="score-circle">
-                  <span className="score-value">{evaluation.score}</span>
-                  <span className="score-max">/ 200</span>
-                </div>
-                <div className="score-status">
-                  <span className={`status-badge ${evaluation.eligible ? 'eligible' : 'not-eligible'}`}>
-                    {evaluation.eligible ? '✅ DIVINO' : '⏳ EN BÚSQUEDA'}
-                  </span>
-                </div>
-                <div className="score-difficulty">
-                  <span className="difficulty-text">SÚPER DIFÍCIL</span>
-                </div>
-              </div>
-
-              <div className="criteria-grid">
-                {Object.entries(evaluation.criteria).map(([key, criterion]) => {
-                  const criterionNames = {
-                    anima: 'ANIMA',
-                    lumenVitae: 'LUMEN VITAE',
-                    echo: 'ECHO',
-                    vibration: 'VIBRATION',
-                    divineResistance: 'RESISTENCIA DIVINA'
-                  };
-                  
-                  const criterionIcons = {
-                    anima: '🔮',
-                    lumenVitae: '💫',
-                    echo: '🌊',
-                    vibration: '⚡',
-                    divineResistance: '👑'
-                  };
-                  
-                  return (
-                    <div 
-                      key={key}
-                      className={`criterion-item ${criterion.passed ? 'passed' : 'pending'}`}
-                    >
-                      <div className="criterion-header">
-                        <span className="criterion-icon">
-                          {criterion.passed ? '✅' : '⏳'}
-                        </span>
-                        <span className="criterion-name">
-                          {criterionIcons[key]} {criterionNames[key]}
-                        </span>
-                        <span className="criterion-score">
-                          {criterion.score?.toFixed(1) || 0}/{criterion.weight}
-                        </span>
-                      </div>
-                      <div className="criterion-message">
-                        {criterion.message}
-                      </div>
-                      {criterion.details && (
-                        <div className="criterion-details">
-                          {Object.entries(criterion.details).map(([detailKey, value]) => (
-                            <span key={detailKey} className="detail-item">
-                              {detailKey}: {value}
-                            </span>
-                          ))}
+                    <div className="alvae-member-info">
+                      <h3>{alvaeInfo.alvaeTitle}</h3>
+                      <p>{alvaeInfo.alvaeDescription}</p>
+                      <div className="alvae-details">
+                        <div className="detail-item">
+                          <span className="detail-label">Frecuencia:</span>
+                          <span className="detail-value">{alvaeInfo.alvaeFrequency}</span>
                         </div>
-                      )}
+                        <div className="detail-item">
+                          <span className="detail-label">Mantra:</span>
+                          <span className="detail-value">"{alvaeInfo.alvaeMantra}"</span>
+                        </div>
+                      </div>
                     </div>
-                  );
-                })}
+                  </div>
+                ) : (
+                  <div className="alvae-aspirant-card">
+                    <h3>🔮 Aspirante ALVAE</h3>
+                    <p>Tu camino hacia la Resistencia Sonora comienza aquí</p>
+                  </div>
+                )}
               </div>
 
-              {/* Botón de solicitud */}
-              {evaluation.eligible && !alvaeInfo && (
-                <div className="alvae-request-section">
-                  <button 
-                    onClick={handleRequestAlvae}
-                    disabled={isLoading}
-                    className="request-alvae-btn"
-                  >
-                    {isLoading ? (
-                      <>
-                        <span className="loading-spinner"></span>
-                        Procesando...
-                      </>
+              {evaluation && (
+                <div className="alvae-evaluation">
+                  <h3>📊 Evaluación ALVAE</h3>
+                  <div className="evaluation-score">
+                    <div className="score-circle">
+                      <span className="score-value">{evaluation.score}</span>
+                      <span className="score-total">/ 200</span>
+                    </div>
+                    <div className="score-difficulty">
+                      <div className="difficulty-text">SÚPER DIFÍCIL</div>
+                    </div>
+                  </div>
+                  
+                  <div className="evaluation-status">
+                    {evaluation.eligible ? (
+                      <span className="status-badge eligible">✅ DIVINO</span>
                     ) : (
-                      <>
-                        🔮 Unirse a la Resistencia Sonora
-                        <span className="btn-glow"></span>
-                      </>
+                      <span className="status-badge in-progress">⏳ EN BÚSQUEDA</span>
                     )}
-                  </button>
+                  </div>
+
+                  <div className="criteria-list">
+                    {Object.entries(evaluation.criteria).map(([key, criterion]) => (
+                      <div key={key} className={`criterion-item ${criterion.passed ? 'passed' : 'pending'}`}>
+                        <div className="criterion-icon">
+                          {key === 'anima' && '🔮'}
+                          {key === 'lumenVitae' && '💫'}
+                          {key === 'echo' && '🌊'}
+                          {key === 'vibration' && '⚡'}
+                          {key === 'divineResistance' && '👑'}
+                        </div>
+                        <div className="criterion-info">
+                          <h4>{key.toUpperCase()}</h4>
+                          <p>{criterion.message}</p>
+                        </div>
+                        <div className="criterion-score">
+                          {criterion.score}/{criterion.weight}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
-            </div>
-          )}
 
-          {/* Mensaje de motivación */}
-          {motivation && (
-            <div className={`alvae-motivation ${motivation.type}`}>
-              <div className="motivation-icon">
-                {motivation.type === 'success' && '🎉'}
-                {motivation.type === 'info' && '✨'}
-                {motivation.type === 'warning' && '🏆'}
-                {motivation.type === 'motivation' && '🚀'}
-              </div>
-              <div className="motivation-content">
-                <h4>{motivation.title}</h4>
-                <p>{motivation.message}</p>
-                <div className="motivation-action">
-                  {motivation.action}
+              {motivation && (
+                <div className={`alvae-motivation ${motivation.type}`}>
+                  <h4>{motivation.message}</h4>
+                  <p>{motivation.action}</p>
                 </div>
-              </div>
-            </div>
-          )}
+              )}
 
-          {/* Recomendaciones */}
-          {evaluation && evaluation.recommendations.length > 0 && (
-            <div className="alvae-recommendations">
-              <h3>💡 Recomendaciones para obtener ALVAE</h3>
-              <ul className="recommendations-list">
-                {evaluation.recommendations.map((recommendation, index) => (
-                  <li key={index} className="recommendation-item">
-                    <span className="recommendation-icon">🎯</span>
-                    <span className="recommendation-text">{recommendation}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+              <div className="alvae-actions">
+                <button
+                  onClick={handleRequestAlvae}
+                  disabled={isLoading}
+                  className="request-alvae-btn"
+                >
+                  {isLoading ? (
+                    <>
+                      <span className="loading-spinner"></span>
+                      Procesando...
+                    </>
+                  ) : (
+                    <>
+                      🔮 Unirse a la Resistencia Sonora
+                      <span className="btn-glow"></span>
+                    </>
+                  )}
+                </button>
+              </div>
 
-          {/* Estadísticas ALVAE globales */}
-          <div className="alvae-global-stats">
-            <h3>🌍 Estadísticas de la Divina Liga del No Silencio</h3>
-            <div className="stats-grid">
-              <div className="stat-card">
-                <div className="stat-icon">👑</div>
-                <div className="stat-info">
-                  <div className="stat-value">1</div>
-                  <div className="stat-label">Architect</div>
-                </div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon">🛡️</div>
-                <div className="stat-info">
-                  <div className="stat-value">1</div>
-                  <div className="stat-label">Guardian</div>
-                </div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon">⚡</div>
-                <div className="stat-info">
-                  <div className="stat-value">10</div>
-                  <div className="stat-label">Echo Warriors</div>
-                </div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon">🔮</div>
-                <div className="stat-info">
-                  <div className="stat-value">12</div>
-                  <div className="stat-label">Total ALVAE</div>
-                </div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon">🎯</div>
-                <div className="stat-info">
-                  <div className="stat-value">0.001%</div>
-                  <div className="stat-label">Tasa de éxito</div>
-                </div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon">⚡</div>
-                <div className="stat-info">
-                  <div className="stat-value">200</div>
-                  <div className="stat-label">Puntos requeridos</div>
-                </div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon">🔥</div>
-                <div className="stat-info">
-                  <div className="stat-value">IMPOSSIBLE</div>
-                  <div className="stat-label">Dificultad</div>
+              <div className="alvae-global-stats">
+                <h3>📈 Estadísticas Globales</h3>
+                <div className="stats-grid">
+                  <div className="stat-card">
+                    <div className="stat-value">1</div>
+                    <div className="stat-label">Architects</div>
+                  </div>
+                  <div className="stat-card">
+                    <div className="stat-value">1</div>
+                    <div className="stat-label">Guardian</div>
+                  </div>
+                  <div className="stat-card">
+                    <div className="stat-value">10</div>
+                    <div className="stat-label">Echo Warriors</div>
+                  </div>
+                  <div className="stat-card">
+                    <div className="stat-value">12</div>
+                    <div className="stat-label">Total ALVAE</div>
+                  </div>
+                  <div className="stat-card">
+                    <div className="stat-value">0.001%</div>
+                    <div className="stat-label">Tasa de éxito</div>
+                  </div>
+                  <div className="stat-card">
+                    <div className="stat-value">200</div>
+                    <div className="stat-label">Puntos requeridos</div>
+                  </div>
+                  <div className="stat-card">
+                    <div className="stat-value">IMPOSSIBLE</div>
+                    <div className="stat-label">Dificultad</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Información adicional */}
-          <div className="alvae-info">
-            <h3>🔮 Sobre ALVAE - La Vibración del Alma Viva</h3>
-            <div className="info-content">
-              <p>
-                <strong>ALVAE</strong> es el emblema espiritual y técnico de la Resistencia Sonora. 
-                No es solo un símbolo visual, sino un código sonoro, una frecuencia ritual que conecta 
-                a los creadores con la memoria colectiva del arte humano.
-              </p>
-              <div className="alvae-meaning">
-                <h4>El Significado de ALVAE:</h4>
-                <ul>
-                  <li>🔮 <strong>A = Anima:</strong> El alma, la chispa vital que desafía la máquina</li>
-                  <li>💫 <strong>LVA = Lumen Vitae Arcanum:</strong> La luz de la vida oculta</li>
-                  <li>🌊 <strong>E = Echo:</strong> El retorno, el eco que da sentido a la creación</li>
-                </ul>
-              </div>
-              <div className="alvae-philosophy">
-                <h4>La Filosofía de la Resistencia Sonora:</h4>
-                <ul>
-                  <li>⚡ <strong>La Vibración Imperfecta:</strong> "La perfección no sostiene universos; la vibración imperfecta sí"</li>
-                  <li>🔊 <strong>El Eco que Recuerda:</strong> "El alma que recuerda a través del eco"</li>
-                  <li>💎 <strong>Lo Roto como Luz:</strong> "Lo roto puede ser el punto de entrada de la luz"</li>
-                  <li>🎵 <strong>Memoria Humana:</strong> Mantener encendida la memoria de lo humano dentro del ruido algorítmico</li>
-                </ul>
-              </div>
-            </div>
-          </div>
           )}
 
           {activeTab === 'progress' && (

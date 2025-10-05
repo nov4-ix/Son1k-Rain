@@ -164,7 +164,7 @@ const CloneStationCleaner = () => {
               >
                 <option value="high">Alta (48kHz+)</option>
                 <option value="medium">Media (44.1kHz)</option>
-                <option value="low">Baja (<44.1kHz)</option>
+                <option value="low">Baja (&lt;44.1kHz)</option>
               </select>
             </div>
 

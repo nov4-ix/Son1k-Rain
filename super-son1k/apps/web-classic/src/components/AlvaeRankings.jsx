@@ -309,7 +309,6 @@ const AlvaeRankings = ({ user, evaluation }) => {
                     <span>👁️</span>
                   </button>
                   <button className="action-btn">
-                    <span>💬</button>
                   </button>
                 </div>
               </div>
